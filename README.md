@@ -1,7 +1,7 @@
 
-[Jennifer]()
-[Mikaela]()
-[Felicia]()
+[Jennifer](https://github.com/JenniferTendell)
+[Mikaela](https://github.com/MikaelaAnd)
+[Felicia](https://github.com/feliciavonbraun)
 
 
 # Getting Started with Create React App
