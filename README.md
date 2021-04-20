@@ -1,6 +1,8 @@
+# Rainbow Land 
 
-[Jennifer](https://github.com/JenniferTendell)
-[Mikaela](https://github.com/MikaelaAnd)
+## Creators
+[Jennifer](https://github.com/JenniferTendell),
+[Mikaela](https://github.com/MikaelaAnd),
 [Felicia](https://github.com/feliciavonbraun)
 
 
