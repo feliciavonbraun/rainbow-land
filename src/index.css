@@ -8,6 +8,12 @@ body {
   box-sizing: border-box;
 }
 
+h2 {
+  color: var(--crlPink);
+  border: 5px solid #FFFFFF;
+  font-size: 5rem;
+}
+
 :root {
   --crlBlack: black;
   --crlPink: #F8ABC7;
