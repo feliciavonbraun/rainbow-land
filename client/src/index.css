@@ -10,12 +10,13 @@ body {
 
 h2 {
   color: var(--crlPink);
-  border: 5px solid #FFFFFF;
   font-size: 5rem;
+  -webkit-text-stroke: 3px var(--crlWhite);
 }
 
 :root {
   --crlBlack: black;
+  --crlWhite: white; 
   --crlPink: #F8ABC7;
   --crlBlue: #92D2F5;
   --crlOrange: #FFBE85;
