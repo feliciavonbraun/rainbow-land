@@ -1,7 +1,5 @@
-@font-face {
-  font-family: tivoli;
-  src: url('./assets/tivolifont.ttf');
-}
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&display=swap');
+
 
 body {
   margin: 0;
