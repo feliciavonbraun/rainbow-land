@@ -1,14 +1,84 @@
 const express  = require('express');
 const carouselRouter = express.Router()
 
-const carousel = [
+const carousels = [
     {
-        name: 'hej'
-    }
+        "name": "Carousel",
+        "price": "$$",
+        "id": 1
+    },
+    {
+        "name": "Flying carousel",
+        "price": "$",
+        "id": 2
+    },
+    {
+        "name": "Roller coaster",
+        "price": "$$$",
+        "id": 3
+    },
+    {
+        "name": "Ferris Wheel",
+        "price": "$",
+        "id": 4
+    },
 ];
 
 carouselRouter.get('/', (req, res) => {
-    res.send(carousel);
+    res.status(200).json(carousels);
 });
+
+
+carouselRouter.post('/', (req, res) => {
+    let newId = 0;
+    const newCarousel = req.body;
+
+    carousels.forEach(carousel => {
+        if (carousel.id > newId) {
+            newId = carousel.id;
+        }
+    });
+    newId++;
+    carousels.push({
+        ...newCarousel,
+        id: newId
+    });
+    res.status(201).json(newCarousel);
+});
+
+carouselRouter.get('/:id', (req, res) => {
+    const { id } = req.params;
+    const foundCarousel = carousels.find((carousel) => {
+        return carousel.id == id;
+    });
+    if (!foundCarousel) {
+        res.status(404).json(`Carousel with id:${id} does not exist`);
+    }
+    res.status(200).json(foundCarousel);
+});
+
+carouselRouter.put('/:id', (req, res) => {
+    const { id } = req.params;
+    const index = carousels.findIndex((carousel) => carousel.id == id);
+    if (index === -1) {
+        return res.status(404).json(`Carousel with id:${id} does not exist`);
+    }
+    const updateCarousel = {
+        ...req.body,
+        id: parseInt(id)
+    }
+    carousels.splice(index, 1, updateCarousel);
+    res.status(201).json(`Carousel with id:${id} has been updated!`);
+});
+
+carouselRouter.delete('/:id', (req, res) => {
+    const { id } = req.params;
+    const index = carousels.findIndex(carousel => carousel.id == id);
+    if (index === -1) {
+        return res.status(404).json(`This carousel does not exists`);
+    }
+    const deletedCarousel = carousels.splice(index, 1);
+    res.status(200).json(deletedCarousel);
+})
 
 module.exports = carouselRouter;
