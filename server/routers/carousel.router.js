@@ -6,22 +6,18 @@ const carousels = [
     {
         "name": "Carousel",
         "tickets": "$$",
-        "id": 1
     },
     {
         "name": "Flying carousel",
         "tickets": "$",
-        "id": 2
     },
     {
         "name": "Roller coaster",
         "tickets": "$$$",
-        "id": 3
     },
     {
         "name": "Ferris Wheel",
         "tickets": "$",
-        "id": 4
     },
 ];
 
@@ -34,18 +30,9 @@ carouselRouter.post('/', async (req, res) => {
     const doc = await CarouselModel.create(req.body);
     res.status(201).json(doc);
 
-    let newId = 0;
     const newCarousel = req.body;
-
-    carousels.forEach(carousel => {
-        if (carousel.id > newId) {
-            newId = carousel.id;
-        }
-    });
-    newId++;
     carousels.push({
         ...newCarousel,
-        id: newId
     });
     res.status(201).json(newCarousel);
 });

@@ -6,11 +6,40 @@ const mongodb = require('mongodb');
 const PORT = 4000; 
 const app = express();
 
-// TODO
-async function connect() {
-    const client = mongodb.connect('', );
 
+async function connectToDatabase() {
+    try {
+        const url = 'mongodb://localhost:27017/rainbowLand';
+        const options = { useUnifiedTopology: true };
+        const client = await mongodb.connect(url, options);
+       // console.log('Connection to database has been established');
+        const db = await client.db('rainbowLand');
+       // console.log('Database has been created')
+        return db;
+    } catch (error) {
+       console.error(error);
+    }
 };
+
+/**
+ * @param {mongodb.Db} db 
+ * @param {String[]} collectionNames 
+ */
+async function createCollections(db, collectionNames) {
+    const collections = {};
+    for (const name of collectionNames) {
+       const collection = await db.createCollection(name);
+       collections[name] = collection;
+    }
+    console.log('Collection has been created!');
+    return collections;
+}
+
+(async function davidsRun() {
+    const db = await connectToDatabase();
+    const collections = await createCollections(db, ['user', 'carousel']);
+    console.log(collections);
+})();
 
 
 app.use(express.json())
