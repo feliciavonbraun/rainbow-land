@@ -1,29 +1,34 @@
+// Get all carousels
 GET http://localhost:4000/api/carousel
 
 ###
 
+// Get specific carousel
 GET http://localhost:4000/api/carousel/2
 
 ###
 
+// Add carousel
 POST http://localhost:4000/api/carousel
 Content-Type: application/json
 
 {
     "name": "Speedo",
-    "price": "$$"
+    "tickets": "$$"
 }
 
 ###
 
+// Update carousel
 PUT http://localhost:4000/api/carousel/1
 Content-Type: application/json
 
 {
     "name": "Slugs roller",
-    "price": "$$"
+    "tickets": "$$"
 }
 
 ###
 
+// Delete carousel
 DELETE http://localhost:4000/api/carousel/2
