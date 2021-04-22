@@ -1,37 +1,31 @@
 const express = require('express');
 const userRouter = express.Router();
+const UserModel = require('../models/user.model');
 
 const testUsers = [
     {
         username : "Lars",
-        password : "abc123",
-        id : 1
+        password : "abc123"
     },
     {
         username : "Anna",
-        password : "123abc",
-        id : 2
+        password : "123abc"
     }
 ];
 
 // Get all users
-userRouter.get('/', (req, res) => {
-    res.status(200).json(testUsers);
+userRouter.get('/', async (req, res) => {
+    const docs = await UserModel.find({});
+    res.status(200).json(docs);
 });
 
 // Add new user
-userRouter.post('/', (req, res) => {
-    let newId = 0;
-    testUsers.forEach((testUser) => {
-        if(testUser.id > newId) {
-            newId = testUser.id;
-        };
-    });
-    
-    newId++
+userRouter.post('/', async (req, res) => {
+    const doc = await UserModel.create(req.body);
+    res.status(201).json(doc);
 
+    
     testUsers.push({
-        id: newId,
         ...req.body
     });
 
