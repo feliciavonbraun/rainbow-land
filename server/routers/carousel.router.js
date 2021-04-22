@@ -28,7 +28,6 @@ carouselRouter.get('/', (req, res) => {
     res.status(200).json(carousels);
 });
 
-
 carouselRouter.post('/', (req, res) => {
     let newId = 0;
     const newCarousel = req.body;
@@ -79,6 +78,6 @@ carouselRouter.delete('/:id', (req, res) => {
     }
     const deletedCarousel = carousels.splice(index, 1);
     res.status(200).json(deletedCarousel);
-})
+});
 
 module.exports = carouselRouter;

@@ -21,7 +21,7 @@ Content-Type: application/json
 
 {
     "name": "Slugs roller",
-    "price": "$$$$"
+    "price": "$$"
 }
 
 ###
