@@ -11,10 +11,12 @@ app.use((req, res, next) => {
     next();
 })
 
+app.use(express.json())
+
 
 // All routers for the application
 app.use('/api/carousels', carouselRouter);
-app.use('/api/users', userRouter);
+app.use('/api/user', userRouter);
 
 // Start the application
 app.listen(port, () => {
