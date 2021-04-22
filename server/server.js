@@ -4,11 +4,17 @@ const carouselRouter = require('./routers/carousel.router.js');
 const userRouter = require('./routers/user.router.js')
 const app = express();
 
-app.use(express.json());
+app.use(express.json())
+
+app.use((req, res, next) => {
+    console.log(req.method + " " + req.path);
+    next();
+})
 
 // All routers for the application
 app.use('/api/carousel', carouselRouter);
-app.use('/api/users', userRouter);
+app.use('/api/user', userRouter);
+
 
 
 // Start the application
