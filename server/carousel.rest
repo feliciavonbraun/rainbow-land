@@ -1,1 +1,29 @@
-GET http://localhost:4000/api/carousels
+GET http://localhost:4000/api/carousel
+
+###
+
+GET http://localhost:4000/api/carousel/2
+
+###
+
+POST http://localhost:4000/api/carousel
+Content-Type: application/json
+
+{
+    "name": "Speedo",
+    "price": "$$"
+}
+
+###
+
+PUT http://localhost:4000/api/carousel/1
+Content-Type: application/json
+
+{
+    "name": "Slugs roller",
+    "price": "$$"
+}
+
+###
+
+DELETE http://localhost:4000/api/carousel/2
