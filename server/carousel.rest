@@ -14,7 +14,7 @@ Content-Type: application/json
 
 {
     "name": "Speedo",
-    "tickets": "$$"
+    "tickets": 3
 }
 
 ###
