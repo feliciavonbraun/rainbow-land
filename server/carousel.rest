@@ -31,4 +31,4 @@ Content-Type: application/json
 ###
 
 // Delete carousel
-DELETE http://localhost:4000/api/carousel/2
+DELETE http://localhost:4000/api/carousel/"60827d583c6dcee68e35972b"

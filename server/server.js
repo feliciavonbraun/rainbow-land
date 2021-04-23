@@ -6,7 +6,6 @@ require('express-async-errors');
 const PORT = 4000; 
 const app = express();
 
-
 app.use(express.json())
 
 // All routers for the application

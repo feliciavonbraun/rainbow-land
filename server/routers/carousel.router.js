@@ -2,7 +2,6 @@ const express  = require('express');
 const carouselRouter = express.Router();
 const CarouselModel = require('../models/carousel.model');
 
-
 carouselRouter.get('/', async (req, res) => {
     const docs = await CarouselModel.find({});
     res.status(200).json(docs);
