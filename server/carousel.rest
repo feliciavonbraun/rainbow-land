@@ -20,12 +20,12 @@ Content-Type: application/json
 ###
 
 // Update carousel
-PUT http://localhost:4000/api/carousel/1
+PUT http://localhost:4000/api/carousel/60827e6d9f0600e6bcc0b498
 Content-Type: application/json
 
 {
-    "name": "Slugs roller",
-    "tickets": "$$"
+    "name": "Slug roller",
+    "tickets": 3
 }
 
 ###
