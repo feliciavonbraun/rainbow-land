@@ -2,6 +2,7 @@ import { createMuiTheme } from "@material-ui/core";
 
 
 const btnTheme = createMuiTheme({
+    textTransform: 'unset', // denna funkar ej...
     palette: {
         primary: {
             main: '#FFBE85',
