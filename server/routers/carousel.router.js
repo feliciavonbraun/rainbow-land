@@ -49,6 +49,7 @@ carouselRouter.put('/:id', async (req, res) => {
     }
 });
 
+// Check if carousel exist and delete if existing is true
 carouselRouter.delete('/:id', async (req, res) => {
     const carousel = await CarouselModel.findOneAndDelete({_id: req.params.id});
     if (carousel) {

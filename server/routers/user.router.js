@@ -51,7 +51,7 @@ userRouter.put('/:id', async (req, res) => {
     }
 });
 
-// Delete user
+// Check if user exist and delete if existing is true
 userRouter.delete('/:id', async (req, res) => {
     const user = await UserModel.findOneAndDelete({_id: req.params.id});
     if (user) {
