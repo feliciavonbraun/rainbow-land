@@ -52,18 +52,13 @@ userRouter.put('/:id', async (req, res) => {
 });
 
 // Delete user
-userRouter.delete('/:id', (req, res) => {
-    const id = req.params.id;
-    const index = testUsers.findIndex(testUser => testUser.id == id);
-
-    if(index === -1) {
-        res.status(404).json({'error': 'Oups... This user does not exist.'});
-        return
-    };
-
-    const deletedUser = testUsers.splice(index, 1);
-
-    res.status(200).json(deletedUser);
+userRouter.delete('/:id', async (req, res) => {
+    const user = await UserModel.findOneAndDelete({_id: req.params.id});
+    if (user) {
+        res.status(200).json(`User with the id: ${user.id} has been deleted.`);
+    } else {
+        res.status(404).json(`User with this id does not exist.`);
+    }
 });
 
 module.exports = userRouter;
