@@ -54,7 +54,7 @@ carouselRouter.delete('/:id', async (req, res) => {
     if (carousel) {
         res.status(200).json(`Carusel with the id: ${carousel.id} has been deleted.`);
     } else {
-        res.status(401).json(`Carousel with this id does not exist.`);
+        res.status(404).json(`Carousel with this id does not exist.`);
     }
 });
 
