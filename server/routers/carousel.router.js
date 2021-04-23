@@ -2,39 +2,27 @@ const express  = require('express');
 const carouselRouter = express.Router();
 const CarouselModel = require('../models/carousel.model');
 
-const carousels = [
-    {
-        name: "Carousel",
-        tickets: "$$",
-    },
-    {
-        name: "Flying carousel",
-        tickets: "$",
-    },
-    {
-        name: "Roller coaster",
-        tickets: "$$$",
-    },
-    {
-        name: "Ferris Wheel",
-        tickets: "$",
-    },
-];
-
 carouselRouter.get('/', async (req, res) => {
     const docs = await CarouselModel.find({});
     res.status(200).json(docs);
 });
 
 carouselRouter.post('/', async (req, res) => {
-    const doc = await CarouselModel.create(req.body);
-    res.status(201).send(doc);
-
-
-    carousels.push({
-        ...newCarousel,
-    });
-
+    try {
+        const carousel = new CarouselModel({
+            name: req.body.name,
+            tickets: req.body.tickets
+        });
+        const findCarousel = await CarouselModel.findOne({ name: req.body.name});
+        if (!findCarousel) {
+            await carousel.save()
+            res.status(200).json({status: carousel.name + ' ' + 'added'});
+        } else {
+            res.status(400).json(`Carousel with the name:${carousel.name} already exist`);
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 carouselRouter.get('/:id', (req, res) => {
