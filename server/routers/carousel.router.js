@@ -19,9 +19,9 @@ carouselRouter.post('/', async (req, res) => {
         const findCarousel = await CarouselModel.findOne({ name: req.body.name});
         if (!findCarousel) {
             await carousel.save()
-            res.status(200).json({status: carousel.name + ' ' + 'added'});
+            res.status(200).json({status: carousel.name + ' ' + 'added.'});
         } else {
-            res.status(400).json(`Carousel with the name: ${carousel.name} already exist`);
+            res.status(400).json(`Carousel with the name: ${carousel.name} already exist.`);
         }
     } catch (err) {
         res.status(500).json(err);
@@ -36,7 +36,7 @@ carouselRouter.put('/:id', async (req, res) => {
         const carousel = await CarouselModel.findByIdAndUpdate(id, req.body);
 // Om id inte finns så skickas 404 annars uppdateras karusellen.
         if (!carousel) {
-            res.status(404).json('Carousel not found');
+            res.status(404).json('Carousel not found.');
         } else {
             await carousel.save()
             res.json({
@@ -45,18 +45,17 @@ carouselRouter.put('/:id', async (req, res) => {
             });
         }  
     } catch (err) {
-        res.status(500).json('Carousel not found');
+        res.status(500).json('Carousel not found.');
     }
 });
 
-carouselRouter.delete('/:id', (req, res) => {
-    const { id } = req.params;
-    const index = carousels.findIndex(carousel => carousel.id == id);
-    if (index === -1) {
-        return res.status(404).json(`This carousel does not exists`);
+carouselRouter.delete('/:id', async (req, res) => {
+    const carousel = await CarouselModel.findOneAndDelete({_id: req.params.id});
+    if (carousel) {
+        res.status(200).json(`Carusel with the id: ${carousel.id} has been deleted.`);
+    } else {
+        res.status(401).json(`Carousel with this id does not exist.`);
     }
-    const deletedCarousel = carousels.splice(index, 1);
-    res.status(200).json(deletedCarousel);
 });
 
 module.exports = carouselRouter;
