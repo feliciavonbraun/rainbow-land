@@ -2,16 +2,7 @@ const express = require('express');
 const userRouter = express.Router();
 const UserModel = require('../models/user.model');
 
-const testUsers = [
-    {
-        username : "Lars",
-        password : "abc123"
-    },
-    {
-        username : "Anna",
-        password : "123abc"
-    }
-];
+
 
 // Get all users
 userRouter.get('/', async (req, res) => {
@@ -19,17 +10,23 @@ userRouter.get('/', async (req, res) => {
     res.status(200).json(docs);
 });
 
-// Add new user
+// Add user if username is unique
 userRouter.post('/', async (req, res) => {
-    const doc = await UserModel.create(req.body);
-    res.status(201).json(doc);
-
-    
-    testUsers.push({
-        ...req.body
-    });
-
-    res.status(201).json(req.body);
+    try {
+        const user = new UserModel({
+            username: req.body.username,
+            password: req.body.password
+        });
+        const findUser = await UserModel.findOne({ username: req.body.username});
+        if (!findUser) {
+            await user.save()
+            res.status(200).json({status: user.username + ' ' + 'Registered'});
+        } else {
+            res.status(400).json('user already exist');
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 // Update user
