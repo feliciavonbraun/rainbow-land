@@ -4,20 +4,20 @@ const CarouselModel = require('../models/carousel.model');
 
 const carousels = [
     {
-        "name": "Carousel",
-        "tickets": "$$",
+        name: "Carousel",
+        tickets: "$$",
     },
     {
-        "name": "Flying carousel",
-        "tickets": "$",
+        name: "Flying carousel",
+        tickets: "$",
     },
     {
-        "name": "Roller coaster",
-        "tickets": "$$$",
+        name: "Roller coaster",
+        tickets: "$$$",
     },
     {
-        "name": "Ferris Wheel",
-        "tickets": "$",
+        name: "Ferris Wheel",
+        tickets: "$",
     },
 ];
 
@@ -28,13 +28,13 @@ carouselRouter.get('/', async (req, res) => {
 
 carouselRouter.post('/', async (req, res) => {
     const doc = await CarouselModel.create(req.body);
-    res.status(201).json(doc);
+    res.status(201).send(doc);
 
-    const newCarousel = req.body;
+
     carousels.push({
         ...newCarousel,
     });
-    res.status(201).json(newCarousel);
+
 });
 
 carouselRouter.get('/:id', (req, res) => {

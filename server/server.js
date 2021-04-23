@@ -35,7 +35,7 @@ async function createCollections(db, collectionNames) {
     return collections;
 }
 
-(async function davidsRun() {
+(async function runDatabase() {
     const db = await connectToDatabase();
     const collections = await createCollections(db, ['user', 'carousel']);
     console.log(collections);
@@ -56,7 +56,7 @@ app.use('/api/carousel', carouselRouter);
 app.use('/api/user', userRouter);
 
 
-(async function run() {
+(async function runMongoose() {
     try {
         await mongoose.connect('mongodb://localhost:27017/rainbowLand', { useNewUrlParser: true, useUnifiedTopology: true });
         console.log('Database is connected');
