@@ -7,47 +7,46 @@ carouselRouter.get('/', async (req, res) => {
     res.status(200).json(docs);
 });
 
+// Add carousel if carouselname is unique
 carouselRouter.post('/', async (req, res) => {
+// Framtida admin fyller i info om ny karusell
     try {
         const carousel = new CarouselModel({
             name: req.body.name,
             tickets: req.body.tickets
         });
+// Kollar om karusellnamnet är upptaget. Om inte- lägger till ny karusell, annars skickas felmeddelande 400.
         const findCarousel = await CarouselModel.findOne({ name: req.body.name});
         if (!findCarousel) {
             await carousel.save()
             res.status(200).json({status: carousel.name + ' ' + 'added'});
         } else {
-            res.status(400).json(`Carousel with the name:${carousel.name} already exist`);
+            res.status(400).json(`Carousel with the name: ${carousel.name} already exist`);
         }
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
-carouselRouter.get('/:id', (req, res) => {
-    const { id } = req.params;
-    const foundCarousel = carousels.find((carousel) => {
-        return carousel.id == id;
-    });
-    if (!foundCarousel) {
-        res.status(404).json(`Carousel with id:${id} does not exist`);
+// Update carousel if carousel exist, otherwise send error message
+carouselRouter.put('/:id', async (req, res) => {
+// Hittar karusell via id 
+    try {
+        const { id } = req.params;
+        const carousel = await CarouselModel.findByIdAndUpdate(id, req.body);
+// Om id inte finns så skickas 404 annars uppdateras karusellen.
+        if (!carousel) {
+            res.status(404).json('Carousel not found');
+        } else {
+            await carousel.save()
+            res.json({
+                old: carousel,
+                new: req.body
+            });
+        }  
+    } catch (err) {
+        res.status(500).json('Carousel not found');
     }
-    res.status(200).json(foundCarousel);
-});
-
-carouselRouter.put('/:id', (req, res) => {
-    const { id } = req.params;
-    const index = carousels.findIndex((carousel) => carousel.id == id);
-    if (index === -1) {
-        return res.status(404).json(`Carousel with id:${id} does not exist`);
-    }
-    const updateCarousel = {
-        ...req.body,
-        id: parseInt(id)
-    }
-    carousels.splice(index, 1, updateCarousel);
-    res.status(201).json(`Carousel with id:${id} has been updated!`);
 });
 
 carouselRouter.delete('/:id', (req, res) => {
