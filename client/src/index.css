@@ -1,22 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sansita:ital,wght@1,800&display=swap');
-
 body {
   margin: 0;
   box-sizing: border-box;
 }
 
+/* Stroke blir för bred. Fungerar inte på typsnittet?
 h2 {
-  color: var(--crlPink);
-  font-size: 5rem;
-  -webkit-text-stroke: 3px var(--crlWhite);
-  font-family: 'Sansita', sans-serif;
-}
+  -webkit-text-stroke: .01rem var(--crlWhite);
+} 
+*/
 
 :root {
-  --crlBlack: black;
-  --crlWhite: white; 
-  --crlPink: #F8ABC7;
-  --crlBlue: #92D2F5;
-  --crlOrange: #FFBE85;
+  --clrBlack: black;
+  --clrWhite: white; 
+  --clrPink: #F8ABC7;
+  --clrBlue: #92D2F5;
+  --clrOrange: #FFBE85;
 }
