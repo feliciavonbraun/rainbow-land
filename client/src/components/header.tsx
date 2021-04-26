@@ -10,7 +10,7 @@ function Header() {
                 style={{width: '30%'}} 
                 src={logo} alt="Rainbow Land"
             />
-            <Link to='/loginPage/' style={loginButton}>
+            <Link to='/accountPage/' style={loginButton}>
                 <Button
                     variant='contained'
                     color='primary'
