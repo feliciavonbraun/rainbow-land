@@ -1,13 +1,16 @@
 import Gallery from "./gallary";
 import OurRides from "./ourRides";
+import SlideShow from "./slideShow";
 
 
 function StartPage() {
     return (
-        <div>
+        <main>
+            <SlideShow />
             <OurRides />
             <Gallery />
-        </div>
+        </main>
     )
 }
+
 export default StartPage; 
