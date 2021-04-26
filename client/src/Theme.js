@@ -24,9 +24,11 @@ const theme = createMuiTheme({
             fontSize: '2rem',
         },
         h2: {
+            fontFamily: 'Sansita, sans-serif',
             color: '#F8ABC7',
             fontSize: '4rem',
-            fontWeight: 'bold',            
+            fontWeight: 'bold',
+            webkitTextStroke: '3px var(--crlWhite)', // funkar ej  
         }
     },
     shadows: "none",

@@ -20,8 +20,8 @@ function AccountPage() {
                 <div style={formContainer}>
 
                     {isToggledForm === false ?
-                        <LoginPage /> 
-                    :
+                        <LoginPage />
+                        :
                         <CreateAccount />
                     }
                     <Divider />
@@ -29,15 +29,14 @@ function AccountPage() {
                         style={{ margin: '1rem' }}
                         variant='contained'
                         color='secondary'
-                        onClick={() => setIsToggledForm(!isToggledForm) }
+                        onClick={() => setIsToggledForm(!isToggledForm)}
                     >
-                        {isToggledForm === false ? 
+                        {isToggledForm === false ?
                             'Create Account'
                             :
                             'Sign in'
-                    }
+                        }
                     </Button>
-
                 </div>
             </div>
         </div>
