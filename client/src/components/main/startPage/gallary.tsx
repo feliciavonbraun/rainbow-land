@@ -1,26 +1,27 @@
-import { Typography } from "@material-ui/core";
+import { Typography, Box } from "@material-ui/core";
 import { CSSProperties } from "@material-ui/styles";
+import galleryTransition from "../../../assets/galleryTransition.svg"
 
 function Gallery() {
     return (
-        <div>
+        <Box position='relative'>
+            <img src={galleryTransition} alt=""/>
             <Typography variant='h2' style={title}>
                 Gallery
             </Typography>
-            <div style={galleryContainer}>
+            <Box 
+                height='20rem'
+                bgcolor='var(--clrBlue)'
+            >
 
-            </div>
-        </div>
+            </Box>
+        </Box>
     )
 }
 
 const title: CSSProperties = {
+    position: 'absolute',
     marginLeft: '10%',
-};
-
-const galleryContainer: CSSProperties = {
-    height: '20rem',
-    backgroundColor: 'var(--clrBlue)',
 };
 
 export default Gallery;
