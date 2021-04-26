@@ -1,6 +1,6 @@
 import { Route, Switch } from "react-router";
 import DetailPage from "./detailPage/detailPage";
-import LoginPage from "./loginPage/loginPage";
+import AccountPage from "./loginPage/accountPage";
 import StartPage from "./startPage/startpage";
 
 function Main() {
@@ -12,8 +12,8 @@ function Main() {
             <Route path='/carousel/:id' >
                 <DetailPage />
             </Route>
-            <Route path='/loginPage'>
-                <LoginPage />
+            <Route path='/accountPage'>
+                <AccountPage />
             </Route>
         </Switch>
     )
