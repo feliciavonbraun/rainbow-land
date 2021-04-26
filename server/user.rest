@@ -3,13 +3,29 @@ GET http://localhost:4000/api/user
 
 ###
 
+// Check if user are logged in
+GET http://localhost:4000/api/user/authenticate
+
+###
+
 // Add new user
-POST http://localhost:4000/api/user
+POST http://localhost:4000/api/user/add
 Content-Type: application/json
 
 {
-    "username": "Fia",
-    "password": "Hejsan123"
+    "username": "Jonte",
+    "password": "marbella"
+}
+
+###
+
+// log in user
+POST http://localhost:4000/api/user/login
+Content-Type: application/json
+
+{
+    "username": "Jonte",
+    "password": "marbellas"
 }
 
 ###
@@ -27,5 +43,9 @@ Content-Type: application/json
 
 // Delete User
 DELETE http://localhost:4000/api/user/2
+
+###
+
+DELETE http://localhost:4000/api/user/logout
 
 

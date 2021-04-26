@@ -1,5 +1,6 @@
 const express = require('express');
 const userRouter = express.Router();
+const bcrypt = require('bcrypt');
 const UserModel = require('../models/user.model');
 
 
@@ -9,26 +10,57 @@ userRouter.get('/', async (req, res) => {
     res.status(200).json(docs);
 });
 
-// Add user if username is unique
-userRouter.post('/', async (req, res) => {
-// ny användare fyller i användarnamn och lösenord
+// Check if user is logged in
+userRouter.get('/authenticate', async (req, res) => {
     try {
+        if (req.body.username) {
+            res.status(200).jsom('You are logged in');
+        } else {
+            res.status(400).json('You are not logged in');
+        }
+    } catch(err) {
+        res.status(500).json(err);
+    }
+});
+
+
+// Login user
+userRouter.post('/login', async (req, res) => {
+    try {
+        const user = await UserModel.findOne({ username: req.body.username });
+        
+        if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
+            return res.status(401).json('Wrong username or password sucker');
+        } else {
+            res.status(200).json('You are now logged in, congratz');
+        }
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
+
+// Add user if username is unique
+userRouter.post('/add', async (req, res) => {
+    try {
+        const password = await bcrypt.hash(req.body.password, 10);
         const user = new UserModel({
             username: req.body.username,
-            password: req.body.password
+            password: password
         });
-// Kollar om användarnamnet är upptaget, om inte så skapa användare annars skicka 400.
-        const findUser = await UserModel.findOne({ username: req.body.username});
+        const findUser = await UserModel.findOne({ username: req.body.username });
         if (!findUser) {
             await user.save()
-            res.status(200).json({status: user.username + ' ' + 'Registered'});
+            res.status(200).json(`${user.username} registered`);
         } else {
-            res.status(400).json(`Username: ${user.username} already exist`);
+            res.status(400).json(`${user.username} already exists`);
         }
     } catch (err) {
         res.status(500).json(err);
     }
 });
+
+
 
 // Update user if user exist, otherwise send error message
 userRouter.put('/:id', async (req, res) => {
@@ -58,6 +90,16 @@ userRouter.delete('/:id', async (req, res) => {
         res.status(200).json(`User with the id: ${user.id} has been deleted.`);
     } else {
         res.status(404).json(`User with this id does not exist.`);
+    }
+});
+
+// Logout user
+userRouter.route('/logout').delete((req, res) => {
+    try {
+        req.session = null;
+        res.status(200).json('You are now logged out!');
+    } catch(err) {
+        res.status(500).json(err);
     }
 });
 
