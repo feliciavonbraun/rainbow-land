@@ -1,5 +1,5 @@
 const express = require('express');
-const carouselRouter = require('./routers/carousel.router.js');
+const postRouter = require('./routers/post.router.js');
 const userRouter = require('./routers/user.router.js');
 const mongoose = require('mongoose');
 require('express-async-errors');
@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json())
 
 // All routers for the application
-app.use('/api/carousel', carouselRouter);
+app.use('/api/post', postRouter);
 app.use('/api/user', userRouter);
 
 
