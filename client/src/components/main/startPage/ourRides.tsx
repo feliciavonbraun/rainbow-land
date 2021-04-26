@@ -52,7 +52,7 @@ function OurRides() {
 
 const h2: CSSProperties = {
     position: 'absolute',
-    top: '-4rem',
+    top: '-5rem',
 };
 
 export default OurRides;

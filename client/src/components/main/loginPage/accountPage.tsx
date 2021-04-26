@@ -1,10 +1,13 @@
-import { Button } from "@material-ui/core";
-import { CSSProperties } from "react";
+import { Button, Divider } from "@material-ui/core";
+import { CSSProperties, useState } from "react";
 import { Link } from "react-router-dom";
 import CreateAccount from "./createAccount";
 import LoginPage from "./loginPage";
 
 function AccountPage() {
+
+    const [isToggledForm, setIsToggledForm] = useState(false);
+
     return (
         <div style={rootStyle}>
             <div style={transparentLayer}></div>
@@ -16,20 +19,29 @@ function AccountPage() {
 
                 <div style={formContainer}>
 
-                    {/* <FormControl style={form}> */}
+                    {isToggledForm === false ?
                         <LoginPage />
+                        :
                         <CreateAccount />
-                    {/* </FormControl> */}
+                    }
+                    <Divider />
                     <Button
                         style={{ margin: '1rem' }}
                         variant='contained'
-                        color='secondary'>Create Account
+                        color='secondary'
+                        onClick={() => setIsToggledForm(!isToggledForm)}
+                    >
+                        {isToggledForm === false ?
+                            'Create Account'
+                            :
+                            'Sign in'
+                        }
                     </Button>
                 </div>
             </div>
         </div>
     )
-}
+};
 export default AccountPage;
 
 const rootStyle: CSSProperties = {
@@ -45,7 +57,7 @@ const rootStyle: CSSProperties = {
     backgroundSize: 'cover',
     backgroundAttachment: 'fixed',
     position: 'relative'
-}
+};
 
 const transparentLayer: CSSProperties = {
     backgroundColor: '#ffffff9a',
@@ -54,22 +66,17 @@ const transparentLayer: CSSProperties = {
     left: '0',
     width: '100%',
     height: 'calc(100vh - 5rem)',
-}
+};
 
 const whiteContainer: CSSProperties = {
     background: 'white',
     width: '50%',
     borderRadius: '.3rem',
-}
+};
 
 const formContainer: CSSProperties = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-}
-
-// const form: CSSProperties = {
-//     width: '60%',
-//     padding: '1rem',
-// }
+};
