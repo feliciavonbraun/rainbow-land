@@ -1,11 +1,15 @@
-import { Button, Typography } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { CSSProperties } from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.svg"
 
 function Header() {
     return (
         <header style={rootStyle}>
-            <Typography variant='h1'>Rainbow Land</Typography>
+            <img 
+                style={{width: '30%'}} 
+                src={logo} alt="Rainbow Land"
+            />
             <Link to='/loginPage/' style={loginButton}>
                 <Button
                     variant='contained'
@@ -24,7 +28,7 @@ const rootStyle: CSSProperties = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '3rem',
+    height: '4rem',
 };
 
 const loginButton: CSSProperties = {
