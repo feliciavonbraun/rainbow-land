@@ -20,16 +20,15 @@ Content-Type: application/json
 ###
 
 // Update post
-PUT http://localhost:4000/api/post/60827e6d9f0600e6bcc0b498
+PUT http://localhost:4000/api/post/6087c0fe926a8e395a1c1412
 Content-Type: application/json
 
 {
-    "username": "Slug roller",
     "rating": 3,
-    "description": "My favorite!"
+    "description": "höhöhöhö!"
 }
 
 ###
 
 // Delete post
-DELETE http://localhost:4000/api/post/"60827d583c6dcee68e35972b"
+DELETE http://localhost:4000/api/post/6087f2a4a47896476ecc2640

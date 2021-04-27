@@ -1,10 +1,11 @@
 const express = require('express');
 const { rawListeners } = require('../models/post.model');
 const postRouter = express.Router();
-const postModel = require('../models/post.model');
+const PostModel = require('../models/post.model');
+const UserModel = require('../models/user.model');
 
 postRouter.get('/', async (req, res) => {
-    const docs = await postModel.find({});
+    const docs = await PostModel.find({});
     res.status(200).json(docs);
 });
 
@@ -16,16 +17,14 @@ postRouter.post('/', (req, res) => {
         return res.status(400).json('You are not logged in');
     };
 
-    const post = new postModel({
+    const post = new PostModel({
         username: req.session.username,
         rating: req.body.rating,
         description: req.body.description
     });
 
     post.save();
-    // res.status(200).json({new: req.body}); // en av dessa
-    post.then(() => res.status(200).json('Post has been posted!'));
-    post.catch((err) => res.status(400).json("Error"));
+    res.status(200).json({new: req.body});
 });
 
 // Update post if post exist, otherwise send error message
@@ -36,23 +35,32 @@ postRouter.put('/:id', async (req, res) => {
         return res.status(400).json('You are not logged in');
     };
 
-    // Hittar post via id 
     try {
-        const { id } = req.params;
-        const post = await postModel.findByIdAndUpdate(id, req.body);
-        // Om id inte finns så skickas 404 annars uppdateras posten.
-        if (!post) {
-            res.status(404).json('post not found.');
+        const post = await PostModel.findOne({ _id: req.params.id });
+
+        console.log(post.username)
+        console.log(req.session.username)
+
+        if (post.username === req.session.username) {
+
+            await PostModel.findByIdAndUpdate(
+                { _id: req.params.id },
+                {
+                    $set: {
+                        rating: req.body.rating,
+                        description: req.body.description
+                    },
+                },
+            );
+            res.status(200).json('Your post was updated');
+
         } else {
-            await post.save()
-            res.json({
-                old: post,
-                new: req.body
-            });
-        }
+            return res.status(404).json('This is not your post, you can not edit');
+        };
+
     } catch (err) {
         res.status(500).json('post not found.');
-    }
+    };
 });
 
 // Check if post exist and delete if existing is true
@@ -63,7 +71,7 @@ postRouter.delete('/:id', async (req, res) => {
         return res.status(400).json('You are not logged in');
     };
 
-    const post = await postModel.findOneAndDelete({ _id: req.params.id });
+    const post = await PostModel.findOneAndDelete({ _id: req.params.id });
     if (post) {
         res.status(200).json(`Post with the id: ${post.id} has been deleted.`);
     } else {
