@@ -14,7 +14,7 @@ app.use(cookieSession({
     name: 'session',
     secret: 'aV3ryS3cr3tK3y',
     secure: false,
-    maxAge: 1000 * 60,
+    maxAge: 1000 * 10,
     httpOnly: true
 }));
 app.use('/api/post', postRouter);
@@ -23,7 +23,7 @@ app.use('/api/user', userRouter);
 
 (async function run() {
     try {
-        await mongoose.connect('mongodb://localhost:27017/rainbowLand', { useNewUrlParser: true, useUnifiedTopology: true });
+        await mongoose.connect('mongodb://localhost:27017/rainbowLand', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
         console.log('Database is connected');
     } catch (error) {
         console.error(error);
