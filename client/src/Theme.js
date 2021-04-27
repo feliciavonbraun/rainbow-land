@@ -24,6 +24,7 @@ const theme = createMuiTheme({
             fontSize: '2rem',
         },
         h2: {
+            fontFamily: 'Sansita, sans-serif',
             color: '#F8ABC7',
             fontSize: '4rem',
             fontWeight: 'bold',            
@@ -36,6 +37,7 @@ const theme = createMuiTheme({
             color: '#414141',
             fontSize: '1.1rem',
             fontWeight: 'bold'
+
         }
     },
     shadows: "none",

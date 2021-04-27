@@ -3,29 +3,50 @@ GET http://localhost:4000/api/user
 
 ###
 
+// Check if user are logged in
+GET http://localhost:4000/api/user/authenticate
+
+###
+
 // Add new user
-POST http://localhost:4000/api/user
+POST http://localhost:4000/api/user/add
 Content-Type: application/json
 
 {
-    "username": "Fia",
-    "password": "Hejsan123"
+    "username": "Nemi",
+    "password": "nemi"
 }
 
 ###
 
-// Update user
-PUT http://localhost:4000/api/user/2
+// log in user
+POST http://localhost:4000/api/user/login
 Content-Type: application/json
 
 {
-    "username": "Lisa",
-    "password": "RapiDapi"
+    "username": "11",
+    "password": "11"
+}
+
+###
+
+// Update user if logged in
+PUT http://localhost:4000/api/user/update/6087e9b7d9056b7ac506b6cc
+Content-Type: application/json
+
+{
+    "username": "11",
+    "password": "11"
 }
 
 ###
 
 // Delete User
-DELETE http://localhost:4000/api/user/2
+DELETE http://localhost:4000/api/user/deleteUser/6087da3084d57572e8fb7f52
+
+###
+
+// Log out user
+DELETE http://localhost:4000/api/user/logout
 
 

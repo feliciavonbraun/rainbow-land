@@ -1,5 +1,6 @@
 const express = require('express');
 const userRouter = express.Router();
+const bcrypt = require('bcrypt');
 const UserModel = require('../models/user.model');
 
 
@@ -9,56 +10,99 @@ userRouter.get('/', async (req, res) => {
     res.status(200).json(docs);
 });
 
-// Add user if username is unique
-userRouter.post('/', async (req, res) => {
-// ny användare fyller i användarnamn och lösenord
+// Check if user is logged in
+userRouter.get('/authenticate', async (req, res) => {
     try {
-        const user = new UserModel({
-            username: req.body.username,
-            password: req.body.password
-        });
-// Kollar om användarnamnet är upptaget, om inte så skapa användare annars skicka 400.
-        const findUser = await UserModel.findOne({ username: req.body.username});
-        if (!findUser) {
-            await user.save()
-            res.status(200).json({status: user.username + ' ' + 'Registered'});
+        if (req.session.username) {
+            res.status(200).json('You are logged in.');
         } else {
-            res.status(400).json(`Username: ${user.username} already exist`);
+            res.status(400).json('You are not logged in.');
         }
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
-// Update user if user exist, otherwise send error message
-userRouter.put('/:id', async (req, res) => {
-    // Hittar rätt användare via id
+
+// Add user if username is unique
+userRouter.post('/add', async (req, res) => {
     try {
-        const { id } = req.params;
-        const user = await UserModel.findByIdAndUpdate(id, req.body);
-    // Om användaren inte finns, skriv ut 404 annars spara uppdatering
-        if (!user) {
-            res.status(404).json('User not found');
-        } else {
+        const password = await bcrypt.hash(req.body.password, 10);
+        const user = new UserModel({
+            username: req.body.username,
+            password: password
+        });
+        const findUser = await UserModel.findOne({ username: req.body.username });
+        if (!findUser) {
             await user.save()
-            res.json({
-                old: user,
-                new: req.body
-            });
-        }  
+            res.status(200).json(`${user.username} registered.`);
+        } else {
+            res.status(400).json(`${user.username} already exists.`);
+        }
     } catch (err) {
-        res.status(500).json('User not found');
+        res.status(500).json(err);
     }
 });
 
+
+// Login user
+userRouter.post('/login', async (req, res) => {
+    const { username } = req.body;
+    const user = await UserModel.findOne({ username: req.body.username });
+
+    if (!user || !await bcrypt.compare(req.body.password, user.password)) {
+        res.status(401).json('Wrong username or password sucker!');
+        return
+    }
+
+    //Create session 
+    req.session.username = username;
+    req.session.role = "user";
+
+    res.status(200).json(`${user.username} is logged in.`);
+});
+
+// Logged in user can only update their own profile, otherwise send 401
+userRouter.put('/update/:id', async (req, res) => {
+    const password = await bcrypt.hash(req.body.password, 10);
+    const findUser = await UserModel.findOne({ _id: req.params.id });
+    if (findUser.username == req.session.username) {
+        const updatedUser = await UserModel.findOneAndUpdate(
+            { _id: req.params.id },
+            {
+                $set: {
+                    username: req.body.username,
+                    password: password
+                },
+            },
+        );
+        res.status(200).json(updatedUser + 'You have been updated');
+    } else {
+        res.status(401).json('You are not authorized to do this.');
+    }
+});
+
+
+
 // Check if user exist and delete if existing is true
-userRouter.delete('/:id', async (req, res) => {
-    const user = await UserModel.findOneAndDelete({_id: req.params.id});
+userRouter.delete('/deleteUser/:id', async (req, res) => {
+    const user = await UserModel.findOneAndDelete({ _id: req.params.id });
     if (user) {
         res.status(200).json(`User with the id: ${user.id} has been deleted.`);
     } else {
         res.status(404).json(`User with this id does not exist.`);
     }
+});
+
+
+
+// Logout user
+userRouter.delete('/logout', (req, res) => {
+    if (!req.session.username) {
+        return res.status(400).json('You are already logged out.');
+    }
+    req.session = null;
+    res.status(200).json('Logout success!');
 });
 
 module.exports = userRouter;
