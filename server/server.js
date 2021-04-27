@@ -14,7 +14,7 @@ app.use(cookieSession({
     name: 'session',
     secret: 'aV3ryS3cr3tK3y',
     secure: false,
-    maxAge: 1000 * 10,
+    maxAge: 1000 * 20,
     httpOnly: true
 }));
 app.use('/api/post', postRouter);
