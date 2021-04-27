@@ -10,8 +10,6 @@ const app = express();
 app.use(express.json())
 
 // All routers for the application
-app.use('/api/post', postRouter);
-app.use('/api/user', userRouter);
 app.use(cookieSession({
     name: 'session',
     secret: 'aV3ryS3cr3tK3y',
@@ -19,6 +17,8 @@ app.use(cookieSession({
     maxAge: 1000 * 60,
     httpOnly: true
 }));
+app.use('/api/post', postRouter);
+app.use('/api/user', userRouter);
 
 
 (async function run() {
