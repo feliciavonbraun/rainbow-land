@@ -14,31 +14,13 @@ userRouter.get('/', async (req, res) => {
 userRouter.get('/authenticate', async (req, res) => {
     try {
         if (req.session.username) {
-            res.status(200).json('You are logged in');
+            res.status(200).json('You are logged in.');
         } else {
-            res.status(400).json('You are not logged in');
+            res.status(400).json('You are not logged in.');
         }
     } catch (err) {
         res.status(500).json(err);
     }
-});
-
-
-// Login user
-userRouter.post('/login', async (req, res) => {
-    const { username } = req.body;
-    const user = await UserModel.findOne({ username: req.body.username });
-
-    if (!user || !await bcrypt.compare(req.body.password, user.password)) {
-        res.status(401).json('Wrong username or password sucker');
-        return
-    }
-
-    //Create session 
-    req.session.username = username;
-    req.session.role = "user";
-
-    res.status(200).json(`${user.username} is logged in`);
 });
 
 
@@ -53,9 +35,9 @@ userRouter.post('/add', async (req, res) => {
         const findUser = await UserModel.findOne({ username: req.body.username });
         if (!findUser) {
             await user.save()
-            res.status(200).json(`${user.username} registered`);
+            res.status(200).json(`${user.username} registered.`);
         } else {
-            res.status(400).json(`${user.username} already exists`);
+            res.status(400).json(`${user.username} already exists.`);
         }
     } catch (err) {
         res.status(500).json(err);
@@ -63,10 +45,41 @@ userRouter.post('/add', async (req, res) => {
 });
 
 
+// Login user
+userRouter.post('/login', async (req, res) => {
+    const { username } = req.body;
+    const user = await UserModel.findOne({ username: req.body.username });
 
-// Update user if user exist, otherwise send error message (not working atm!)
+    if (!user || !await bcrypt.compare(req.body.password, user.password)) {
+        res.status(401).json('Wrong username or password sucker!');
+        return
+    }
+
+    //Create session 
+    req.session.username = username;
+    req.session.role = "user";
+
+    res.status(200).json(`${user.username} is logged in.`);
+});
+
+// Logged in user can only update their own profile, otherwise send 401
 userRouter.put('/update/:id', async (req, res) => {
-
+    const password = await bcrypt.hash(req.body.password, 10);
+    const findUser = await UserModel.findOne({ _id: req.params.id });
+    if (findUser.username == req.session.username) {
+        const updatedUser = await UserModel.findOneAndUpdate(
+            { _id: req.params.id },
+            {
+                $set: {
+                    username: req.body.username,
+                    password: password
+                },
+            },
+        );
+        res.status(200).json(updatedUser + 'You have been updated');
+    } else {
+        res.status(401).json('You are not authorized to do this.');
+    }
 });
 
 
@@ -86,7 +99,7 @@ userRouter.delete('/deleteUser/:id', async (req, res) => {
 // Logout user
 userRouter.delete('/logout', (req, res) => {
     if (!req.session.username) {
-        return res.status(400).json('You are already logged out');
+        return res.status(400).json('You are already logged out.');
     }
     req.session = null;
     res.status(200).json('Logout success!');
