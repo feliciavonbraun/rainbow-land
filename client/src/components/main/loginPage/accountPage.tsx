@@ -1,4 +1,4 @@
-import { Button, Divider } from "@material-ui/core";
+import { Button, Divider, Box } from "@material-ui/core";
 import { CSSProperties, useState } from "react";
 import { Link } from "react-router-dom";
 import CreateAccount from "./createAccount";
@@ -9,15 +9,15 @@ function AccountPage() {
     const [isToggledForm, setIsToggledForm] = useState(false);
 
     return (
-        <div style={rootStyle}>
+        <Box style={rootStyle}>
             <div style={transparentLayer}></div>
 
-            <div style={whiteContainer}>
+            <Box style={whiteContainer}>
                 <Link to='/'>
                     <Button style={{ margin: '1rem' }}>Go back</Button>
                 </Link>
 
-                <div style={formContainer}>
+                <Box style={formContainer}>
 
                     {isToggledForm === false ?
                         <LoginPage />
@@ -37,9 +37,9 @@ function AccountPage() {
                             'Sign in'
                         }
                     </Button>
-                </div>
-            </div>
-        </div>
+                </Box>
+            </Box>
+        </Box>
     )
 };
 export default AccountPage;
