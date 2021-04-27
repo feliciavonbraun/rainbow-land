@@ -14,7 +14,7 @@ Content-Type: application/json
 
 {
     "rating": 3,
-    "description": "SuperFun!"
+    "description": "Superduper!"
 }
 
 ###
@@ -31,4 +31,4 @@ Content-Type: application/json
 ###
 
 // Delete post
-DELETE http://localhost:4000/api/post/6087f2a4a47896476ecc2640
+DELETE http://localhost:4000/api/post/6088234442b0ba5c0a1a318c

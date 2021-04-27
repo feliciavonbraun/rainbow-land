@@ -71,11 +71,15 @@ postRouter.delete('/:id', async (req, res) => {
         return res.status(400).json('You are not logged in');
     };
 
-    const post = await PostModel.findOneAndDelete({ _id: req.params.id });
-    if (post) {
+    const post = await PostModel.findOne({ _id: req.params.id });
+    if (post.username === req.session.username) {
+
+        await PostModel.findByIdAndDelete(
+            { _id: req.params.id }
+        )
         res.status(200).json(`Post with the id: ${post.id} has been deleted.`);
     } else {
-        res.status(404).json(`Post with this id does not exist.`);
+        res.status(404).json(`You can not delete someone eles post, duh.`);
     }
 });
 
