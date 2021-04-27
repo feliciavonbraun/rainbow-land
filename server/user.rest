@@ -13,8 +13,8 @@ POST http://localhost:4000/api/user/add
 Content-Type: application/json
 
 {
-    "username": "Marie",
-    "password": "marias"
+    "username": "Nemi",
+    "password": "nemi"
 }
 
 ###
@@ -24,25 +24,25 @@ POST http://localhost:4000/api/user/login
 Content-Type: application/json
 
 {
-    "username": "Marie",
-    "password": "maries"
+    "username": "11",
+    "password": "11"
 }
 
 ###
 
-// Update user (not done!!)
-PUT http://localhost:4000/api/user/update/6086d40efae1fd47bf402ca3
+// Update user if logged in
+PUT http://localhost:4000/api/user/update/6087e9b7d9056b7ac506b6cc
 Content-Type: application/json
 
 {
-    "username": "Fellangrl",
-    "password": "felicias"
+    "username": "11",
+    "password": "11"
 }
 
 ###
 
 // Delete User
-DELETE http://localhost:4000/api/user/deleteUser/60829cddada32ff3bef34a2c
+DELETE http://localhost:4000/api/user/deleteUser/6087da3084d57572e8fb7f52
 
 ###
 
