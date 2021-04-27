@@ -2,18 +2,16 @@
 import { Grid, Typography } from '@material-ui/core';
 import { CSSProperties } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
+import { Carousel } from '../../mockedInterfaceCarousels';
 
 interface Props {
-    carousel: {
-        image: string;
-        name: string;
-        link: string;
-    },
+    carousel: Carousel, 
     index: number
 }
 
-
 function CarouselCard(props: Props) {
+    const clickedCarousel = props.carousel.id
+
     return (
         <Grid
             item
@@ -22,13 +20,13 @@ function CarouselCard(props: Props) {
             sm={6}
             md={3}
         >
-            <Link to='#' style={noTextDecoration}>
+            <Link to={'/carousel/' + clickedCarousel}  style={noTextDecoration}>
                 <img
                     src={props.carousel.image}
                     alt={props.carousel.name}
                     style={imageStyle}
                 />
-                <Typography align='center'>
+                <Typography align='center' variant='h3'>
                     {props.carousel.name}
                 </Typography>
             </Link>
@@ -37,7 +35,8 @@ function CarouselCard(props: Props) {
 };
 
 const noTextDecoration: CSSProperties = {
-    textDecoration: 'none'
+    textDecoration: 'none',
+    color: 'var(--clrBlack)',
 }
 
 const imageStyle: CSSProperties = {

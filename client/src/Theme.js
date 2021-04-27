@@ -18,17 +18,26 @@ const theme = createMuiTheme({
             'Josefin Sans',
             'sans-serif',
         ].join(','),
-        fontSize: '1rem',
+        fontSize: 12,
         h1: {
-            color: 'black',
+            color: '#414141',
             fontSize: '2rem',
         },
         h2: {
             fontFamily: 'Sansita, sans-serif',
             color: '#F8ABC7',
             fontSize: '4rem',
-            fontWeight: 'bold',
-            webkitTextStroke: '3px var(--crlWhite)', // funkar ej  
+            fontWeight: 'bold',            
+        },
+        h3: {
+            color: '#414141',
+            fontSize: '1.2rem'
+        },
+        subtitle1: {
+            color: '#414141',
+            fontSize: '1.1rem',
+            fontWeight: 'bold'
+
         }
     },
     shadows: "none",

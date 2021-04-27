@@ -1,28 +1,7 @@
 import { Box, Grid, Typography } from '@material-ui/core';
 import { CSSProperties } from '@material-ui/styles';
 import CarouselCard from './carouselCard';
-
-// Detta ska flyttas till carousel API
-const carousels = [
-    {
-        image: 'https://images.pexels.com/photos/136412/pexels-photo-136412.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-        name: 'Flying carousel',
-        link: ''
-    }, {
-        image: 'https://images.pexels.com/photos/749061/pexels-photo-749061.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-        name: 'Roller coaster',
-        link: ''
-    }, {
-        image: 'https://images.pexels.com/photos/784917/pexels-photo-784917.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-        name: 'Ferris wheel',
-        link: ''
-    }, {
-        image: 'https://images.pexels.com/photos/1375016/pexels-photo-1375016.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-        name: 'Carousel',
-        link: ''
-    }
-]
-
+import { carousels } from '../../mockedInterfaceCarousels'
 
 function OurRides() {
     return (
