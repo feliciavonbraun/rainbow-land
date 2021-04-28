@@ -1,62 +1,32 @@
 import { Button, FormControl, TextField } from "@material-ui/core";
-import { useState } from "react";
-import { CSSProperties, useEffect } from "react";
-import { makeRequest } from "../../../makeRequest";
-
-// interface NewUser {
-//     username: string,
-//     password: string
-// }
-
+import {  useContext, useState } from "react";
+import { CSSProperties } from "react";
+import { LoginContext } from "../../../loginContext";
 
 function LoginPage() {
-    // Fetching all users in DB 
-    const [ user, setUser] = useState([]);
-    useEffect(() => {
-        const fetchUser = async () => {
-            const user = await makeRequest("/api/user", "GET")
-            setUser(user)
+
+    const [  username, setUsername ] = useState('');
+    const [  password, setPassword ] = useState('');
+    const { login } = useContext(LoginContext);
+    
+    const handleLogin = async () => {
+        const errorMessage = await login(username, password)
+        if (errorMessage) {
+            // visa meddelandet
         }
-        fetchUser();
-    }, []);
+    }
 
-
-    // // Add new user
-    // const [ newUser, setNewUser ] = useState<NewUser>({
-    //     username: '',
-    //     password: ''
-    // });
-    // useEffect(() => {
-    //     const body = {
-    //         "username": ,
-    //         "password": ''
-    //     }
-    //     const addUser = async () => {
-    //         const newUser = await makeRequest("/api/user/add", "POST", body)
-    //         setUser(newUser)
-    //     }
-    //     addUser();
-    // }, []);
-
-
-
-
-
+ 
     return (
         <FormControl style={form}>
-            <TextField type='text' label="Username" required></TextField>
-            <TextField 
-                type='password' 
-                label="Password" required
-                //value={newUser.password}
-                //onChange={(event) => setNewUser(event.target.value, 'password')}
-                ></TextField>
+            <TextField type='text' value={username} label="Username" onChange={(event) => {setUsername(event.target.value)}} required></TextField>
+            <TextField type='password' value={password} label="Password" onChange={(event) => {setPassword(event.target.value)}} required></TextField>
             <Button
                 style={{ marginTop: '1rem' }}
                 type='submit'
                 variant='contained'
                 color='secondary'
-                onClick={() => {console.log(user)}}
+                onClick={handleLogin}
             >
                 Sign In
             </Button>

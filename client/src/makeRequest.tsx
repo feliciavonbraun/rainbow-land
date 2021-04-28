@@ -1,4 +1,4 @@
-export const makeRequest = async (url: string, method: string, body?: {}) => {
+export async function makeRequest<T = string>(url: string, method: string, body?: {}): Promise<[T, boolean]> {
     const response = await fetch(url, {
         method: method,
         body: JSON.stringify(body),
@@ -7,6 +7,9 @@ export const makeRequest = async (url: string, method: string, body?: {}) => {
         },
     });
 
-    const status = await response.json();
-    return status;
+    const data = await response.json();
+    return [
+        data,
+        response.ok
+    ];
 }

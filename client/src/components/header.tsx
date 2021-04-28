@@ -6,10 +6,12 @@ import logo from "../assets/logo.svg"
 function Header() {
     return (
         <header style={rootStyle}>
-            <img 
-                style={{width: '30%'}} 
-                src={logo} alt="Rainbow Land"
-            />
+            <Link to="/">
+                <img 
+                    style={{width: '80%'}} 
+                    src={logo} alt="Rainbow Land"
+                />
+            </Link>
             <Link to='/accountPage/' style={loginButton}>
                 <Button
                     variant='contained'

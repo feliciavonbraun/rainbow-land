@@ -11,15 +11,11 @@ userRouter.get('/', async (req, res) => {
 });
 
 // Check if user is logged in
-userRouter.get('/authenticate', async (req, res) => {
-    try {
-        if (req.session.username) {
-            res.status(200).json('You are logged in.');
-        } else {
-            res.status(400).json('You are not logged in.');
-        }
-    } catch (err) {
-        res.status(500).json(err);
+userRouter.get('/authorization', async (req, res) => {
+    if (req.session.username) {
+        res.status(200).json(req.session.username);
+    } else {
+        res.status(401).json(null);
     }
 });
 
@@ -59,7 +55,7 @@ userRouter.post('/login', async (req, res) => {
     req.session.username = username;
     req.session.role = "user";
 
-    res.status(200).json(`${user.username} is logged in.`);
+    res.status(200).json(user.username);
 });
 
 // Logged in user can only update their own profile, otherwise send 401
