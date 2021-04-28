@@ -1,10 +1,12 @@
 import { Button } from "@material-ui/core";
-import { CSSProperties } from "react";
+import { CSSProperties, useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg"
+import { LoginContext } from "../loginContext";
 
 function Header() {
-    const loggedIn = true;
+    const { username } = useContext(LoginContext);
+    console.log(username);
 
     return (
         <header style={rootStyle}>
@@ -14,7 +16,7 @@ function Header() {
                     src={logo} alt="Rainbow Land"
                 />
             </Link>
-            {loggedIn
+            {username
                 ? <Link to='/profile' style={loginButton}>
                     <Button
                         variant='contained'
