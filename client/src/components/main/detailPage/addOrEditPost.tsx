@@ -12,7 +12,7 @@ function AddOrEditPost(props: Props) {
 
     const [comment, setComment] = useState('')
 
-    const {deletePost} = useContext(PostContext);
+    const {createNewPost} = useContext(PostContext);
 
     return (
         <Box
@@ -42,7 +42,7 @@ function AddOrEditPost(props: Props) {
                     height='10rem'
                     marginBottom='1rem'
                 >
-                    <Rating id='ratingInput' defaultValue={3} value={3} />
+                    <Rating id='ratingInput' defaultValue={3} />
                     <TextField 
                         id='imageInput' 
                         label='Add image'
@@ -68,7 +68,7 @@ function AddOrEditPost(props: Props) {
                     <Button 
                         variant='contained' 
                         color='secondary'
-                        onClick={() => deletePost}
+                        onClick={() => createNewPost}
                     >
                         Add
                     </Button>

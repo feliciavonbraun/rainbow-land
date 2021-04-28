@@ -1,7 +1,9 @@
 import { Box, Button, Grid, Typography } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
+import EditRoundedIcon from '@material-ui/icons/EditRounded';
+import { useContext } from "react";
 //import { CSSProperties } from '@material-ui/styles';
-import { Post } from "../../../postsContext";
+import { Post, PostContext } from "../../../postsContext";
 
 interface Props {
     post: Post
@@ -11,6 +13,8 @@ interface Props {
 function PostCard(props: Props) {
     // Rating ska baseras på användarnas betyg
     const rating = 2;
+
+    const { deletePost } = useContext(PostContext);
 
     return (
         <Grid
@@ -47,6 +51,15 @@ function PostCard(props: Props) {
                         style={{margin: '1rem 0'}}
                     >
                         Edit
+                    </Button>
+                    <Button
+                        variant='contained'
+                        onClick={() => deletePost}
+                    >
+                        X
+                    </Button>
+                    <Button>
+                        <EditRoundedIcon />
                     </Button>
                 </Box>
             </Box>
