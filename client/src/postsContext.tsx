@@ -12,12 +12,12 @@ export interface Post {
 
 interface PostContextValue {
     posts: Post[];
-    createNewPost: (post: any) => void;
+    createNewPost: (rating: number, description: string) => void;
     deletePost: (_id: string) => void;
-    editPost: (_id: string, rating: number, description: string) => void; 
+    updatePost: (_id: string, rating: number, description: string) => void; 
 }
 
-interface Prop {
+interface Props {
     children: any; 
 }
 
@@ -25,15 +25,16 @@ export const PostContext = createContext<PostContextValue>({} as PostContextValu
 
 // const PostProvider: FunctionComponent = ({ children }) => {
 // function PostProvider: FunctionComponent = ({children: any}) => {
-function PostProvider(props: Prop) {
-
+function PostProvider(props: Props) {
     const [posts, setPosts] = useState<any>([] as Post[]) 
+    console.log(setPosts)
 
 
-    async function createNewPost(post: any) {
+    async function createNewPost(rating: number, description: string ) {
 
         const body = {
-            post
+            rating,
+            description
         };
 
         await makeRequest('/api/post/', 'POST', body )
@@ -41,7 +42,7 @@ function PostProvider(props: Prop) {
 
     }; 
 
-    async function editPost(_id: string, rating: number, description: string) {
+    async function updatePost(_id: string, rating: number, description: string) {
 
         const body = {
             rating,
@@ -49,13 +50,13 @@ function PostProvider(props: Prop) {
         };
 
         await makeRequest(`/api/post/${_id}`, 'PUT', body)
-        // PUT http://localhost:4000/api/post/6087c0fe926a8e395a1c1412
+        // PUT http://localhost:4000/api/post/:id
 
     };
 
     async function deletePost(_id: string) {
         await makeRequest(`/api/post/${_id}`, 'DELETE') 
-        // DELETE http://localhost:4000/api/post/6088234442b0ba5c0a1a318c 
+        // DELETE http://localhost:4000/api/post/:id 
         
         console.log('Deleted:', _id);
         
@@ -65,7 +66,7 @@ function PostProvider(props: Prop) {
         <PostContext.Provider value={{
             posts: posts,
             createNewPost: createNewPost,
-            editPost: editPost,
+            updatePost: updatePost,
             deletePost: deletePost,
         }}
         >
