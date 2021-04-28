@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg"
 
 function Header() {
+    const loggedIn = true;
+
     return (
         <header style={rootStyle}>
             <Link to="/">
@@ -12,15 +14,26 @@ function Header() {
                     src={logo} alt="Rainbow Land"
                 />
             </Link>
-            <Link to='/accountPage/' style={loginButton}>
-                <Button
-                    variant='contained'
-                    color='primary'
-                    size='small'
-                >
-                    Login
-                </Button>
-            </Link>
+            {loggedIn
+                ? <Link to='/profile' style={loginButton}>
+                    <Button
+                        variant='contained'
+                        color='primary'
+                        size='small'
+                    >
+                        Profile
+                    </Button>
+                </Link>
+                : <Link to='/accountPage' style={loginButton}>
+                    <Button
+                        variant='contained'
+                        color='primary'
+                        size='small'
+                    >
+                        Login
+                    </Button>
+                </Link>
+            }
         </header>
     )
 }
