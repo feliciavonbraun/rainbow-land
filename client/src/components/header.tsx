@@ -31,7 +31,7 @@ function Header() {
                         color='primary'
                         size='small'
                     >
-                        Login
+                        Sign in
                     </Button>
                 </Link>
             }
