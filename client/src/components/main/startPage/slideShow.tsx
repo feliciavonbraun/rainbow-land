@@ -1,5 +1,5 @@
 import { CSSProperties } from '@material-ui/styles'
-import MainCarousel from '../../../assets/mainCarousel.jpg'
+import MainCarousel from '../../../assets/carouselPics/mainCarousel.jpg'
 
 // TODO: Importera carousel från material UI
 function SlideShow() {

@@ -27,7 +27,8 @@ const theme = createMuiTheme({
             fontFamily: 'Sansita, sans-serif',
             color: '#F8ABC7',
             fontSize: '4rem',
-            fontWeight: 'bold',            
+            fontWeight: 'bold',
+            WebkitTextStroke: '3px white', 
         },
         h3: {
             color: '#414141',

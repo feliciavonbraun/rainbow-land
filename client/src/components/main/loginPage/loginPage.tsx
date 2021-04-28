@@ -16,6 +16,8 @@ function LoginPage() {
         }
     }
  
+    const isFormValid = username && password;
+
     return (
         <FormControl style={form}>
             <TextField type='text' value={username} label="Username" onChange={(event) => {setUsername(event.target.value)}} required></TextField>
@@ -25,6 +27,7 @@ function LoginPage() {
                 type='submit'
                 variant='contained'
                 color='secondary'
+                disabled = {!isFormValid}
                 onClick={handleLogin}
             >
                 Sign In
