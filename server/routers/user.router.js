@@ -11,7 +11,7 @@ userRouter.get('/', async (req, res) => {
 });
 
 // Check if user is logged in
-userRouter.get('/authenticate', async (req, res) => {
+userRouter.get('/authorization', async (req, res) => {
     try {
         if (req.session.username) {
             res.status(200).json('You are logged in.');
