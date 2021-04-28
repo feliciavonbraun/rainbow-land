@@ -1,11 +1,18 @@
 import { Box, Button, TextField, Typography } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
+import { useContext, useState } from "react";
+import "../../../makeRequest";
+import { PostContext } from "../../../postsContext";
 
 interface Props {
     onClick: () => void
 }
 
 function AddOrEditPost(props: Props) {
+
+    const [comment, setComment] = useState('')
+
+    const {deletePost} = useContext(PostContext);
 
     return (
         <Box
@@ -36,8 +43,18 @@ function AddOrEditPost(props: Props) {
                     marginBottom='1rem'
                 >
                     <Rating id='ratingInput' defaultValue={3} value={3} />
-                    <TextField id='imageInput' label='Add image' />
-                    <TextField id='commentInput' label='Comment' />
+                    <TextField 
+                        id='imageInput' 
+                        label='Add image'
+                    />
+                    <TextField 
+                        id='commentInput' 
+                        label='Comment' 
+                        multiline
+                        required
+                        value={comment}
+                        onChange={event => setComment(event.target.value)}
+                    />
                 </Box>
                 <Box 
                     display='flex' 
@@ -51,6 +68,7 @@ function AddOrEditPost(props: Props) {
                     <Button 
                         variant='contained' 
                         color='secondary'
+                        onClick={() => deletePost}
                     >
                         Add
                     </Button>

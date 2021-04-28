@@ -5,7 +5,7 @@ import CarouselInfo from "./carouselInfo";
 import AllPosts from "./allPosts";
 
 
-function DetailPage() {
+function DetailPage(){
     const urlPath = window.location.pathname;
     const carouselId = Number(urlPath.split('/')[2]);
     const carousel = carousels.find(carousel => carousel.id === carouselId);
@@ -17,7 +17,7 @@ function DetailPage() {
             </Box>
             <Box width='80%' margin='0 auto'>
                 <CarouselInfo carouselName={carousel?.name} />
-                <AllPosts/>
+                <AllPosts />
             </Box>
         </main>
     )

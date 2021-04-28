@@ -3,11 +3,11 @@ import { Rating } from "@material-ui/lab";
 import { CSSProperties } from '@material-ui/styles';
 
 interface Props {
-    post: {
-        title: string;
-        image: string;
-        comment: string;
-    },
+    // post: {
+    //     title: string;
+    //     image: string;
+    //     comment: string;
+    // },
     index: number,
     onClick: () => void
 }
