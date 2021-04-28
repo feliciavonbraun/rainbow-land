@@ -72,9 +72,9 @@ userRouter.put('/update/:id', async (req, res) => {
                 },
             },
         );
-        res.status(200).json(updatedUser + 'You have been updated');
+        res.status(200).json(updatedUser);
     } else {
-        res.status(401).json('You are not authorized to do this.');
+        res.status(401).json(null);
     }
 });
 
@@ -95,7 +95,7 @@ userRouter.delete('/deleteUser/:id', async (req, res) => {
 // Logout user
 userRouter.delete('/logout', (req, res) => {
     if (!req.session.username) {
-        return res.status(400).json('You are already logged out.');
+        return res.status(401).json(null);
     }
     req.session = null;
     res.status(200).json('Logout success!');

@@ -3,29 +3,24 @@ import { FunctionComponent, createContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeRequest } from './makeRequest';
 
+// INTERFACE
 
 interface LoggedIn {
     username?: string;
     login: (username: string, password: string) => Promise<string | undefined>;
+    logoutUser: () => void;
 }
 
-export const LoginContext = createContext<LoggedIn>({
-    login: () => new Promise(() => {})
-});
+// CREATE CONTEXT
+export const LoginContext = createContext<LoggedIn>({} as LoggedIn);
 
+
+// CONTEXT PROVIDER
 const LoginProvider: FunctionComponent = ({ children }) => {
-    const [username, setUsername] = useState<string>();
+    const [username, setUsername] = useState<string | undefined>();
     const history = useHistory();
-    
-    // Check if user is logged in
-    useEffect(() => {
-       async function loginUser()  {
-           const [username] = await makeRequest('/api/user/authorization', 'GET')
-           setUsername(username);
-       }
-       loginUser();
-   }, [setUsername]);
-   
+
+
    // Login user
    async function login(username: string, password: string) {
         const body = {
@@ -42,10 +37,33 @@ const LoginProvider: FunctionComponent = ({ children }) => {
         }
     } 
 
+    // Check if user is logged in
+    useEffect(() => {
+        async function checkIfLoggedIn()  {
+            const [username] = await makeRequest('/api/user/authorization', 'GET')
+            setUsername(username);
+        }
+        checkIfLoggedIn();
+    }, [setUsername]);
+
+
+    // Logout user
+    async function logoutUser() {
+       const [ errormessage, success ] = await makeRequest('/api/user/logout', 'DELETE')
+       if (success) {
+           history.push('/');
+           setUsername(undefined);
+            return;
+        }
+        console.log(errormessage);
+    }
+
+
     return(
         <LoginContext.Provider value={{
             username,
-            login
+            login,
+            logoutUser,
         }}>
             { children }
         </LoginContext.Provider>

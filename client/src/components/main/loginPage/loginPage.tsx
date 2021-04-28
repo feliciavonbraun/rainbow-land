@@ -15,7 +15,6 @@ function LoginPage() {
             // visa meddelandet
         }
     }
-
  
     return (
         <FormControl style={form}>
