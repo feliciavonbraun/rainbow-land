@@ -1,17 +1,16 @@
 import { Box, Button, Grid, Modal } from "@material-ui/core";
 import { useContext, useState } from "react";
+import { PostContext } from "../../../postsContext";
 import AddOrEditPost from "./addOrEditPost";
 import PostCard from "./postCard";
-import { PostContext } from "../../../postsContext";
 
 function AllPosts(){
     const [open, setOpen] = useState(false)
-    
     const handleClickForModal = () => {
         setOpen(!open)
-    }
+    };
     
-    // va noga med om det är post eller postS här och på map
+    
     const { posts } = useContext(PostContext);
     
     return (
@@ -28,11 +27,9 @@ function AllPosts(){
                 container
                 spacing={5}
                 >
-                {posts.map((post, index ) =>
-                    <PostCard
+                {posts.map((post) =>
+                    <PostCard 
                         post={post}
-                        index={index}
-                        // key={index}
                         onClick={handleClickForModal}
                     />
                     )}

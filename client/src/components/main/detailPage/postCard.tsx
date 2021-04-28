@@ -1,14 +1,10 @@
 import { Box, Button, Grid, Typography } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
-import { CSSProperties } from '@material-ui/styles';
+//import { CSSProperties } from '@material-ui/styles';
+import { Post } from "../../../postsContext";
 
 interface Props {
-    // post: {
-    //     title: string;
-    //     image: string;
-    //     comment: string;
-    // },
-    index: number,
+    post: Post
     onClick: () => void
 }
 
@@ -19,23 +15,22 @@ function PostCard(props: Props) {
     return (
         <Grid
             item
-            key={props.index}
             xs={12}
             sm={6}
             md={3}
         >
             <Box style={{boxShadow: '5px 5px 10px #BDBDBD'}}>
-                <img
+                {/* <img
                     src={props.post.image}
                     alt={props.post.title}
                     style={imageStyle}
-                />
+                /> */}
                 <Box 
                     margin='0 1rem' 
                     paddingBottom='1rem'
                  >
                     <Typography variant='subtitle1'>
-                        {props.post.title}
+                        {props.post.username}
                     </Typography>
                     <Rating
                         name='Rating'
@@ -44,7 +39,7 @@ function PostCard(props: Props) {
                         readOnly
                     />
                     <Typography>
-                        {props.post.comment}
+                        {props.post.description}
                     </Typography>
                     <Button 
                         variant='contained' 
@@ -59,9 +54,9 @@ function PostCard(props: Props) {
     );
 }
 
-const imageStyle: CSSProperties = {
-    width: '100%',
-    objectFit: 'cover',
-};
+// const imageStyle: CSSProperties = {
+//     width: '100%',
+//     objectFit: 'cover',
+// };
 
 export default PostCard;
