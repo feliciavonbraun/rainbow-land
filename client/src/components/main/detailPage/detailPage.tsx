@@ -3,6 +3,7 @@ import { CSSProperties } from "@material-ui/styles";
 import { carousels } from "../../mockedInterfaceCarousels";
 import CarouselInfo from "./carouselInfo";
 import AllPosts from "./allPosts";
+import Header from "../../header";
 
 
 function DetailPage(){
@@ -12,6 +13,7 @@ function DetailPage(){
     
     return (
         <main>
+            <Header />
             <Box height='50vh'>
                 <img style={imageStyle} src={carousel?.image} alt={carousel?.name} />
             </Box>

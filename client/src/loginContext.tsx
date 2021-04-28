@@ -40,7 +40,7 @@ const LoginProvider: FunctionComponent = ({ children }) => {
     // Check if user is logged in
     useEffect(() => {
         async function checkIfLoggedIn()  {
-            const [username] = await makeRequest('/api/user/authorization', 'GET')
+            const username = await makeRequest('/api/user/authorization', 'GET')
             setUsername(username);
         }
         checkIfLoggedIn();
@@ -49,13 +49,12 @@ const LoginProvider: FunctionComponent = ({ children }) => {
 
     // Logout user
     async function logoutUser() {
-       const [ errormessage, success ] = await makeRequest('/api/user/logout', 'DELETE')
+       const success = await makeRequest('/api/user/logout', 'DELETE')
        if (success) {
            history.push('/');
            setUsername(undefined);
             return;
         }
-        console.log(errormessage);
     }
 
 
