@@ -59,7 +59,9 @@ function AllPosts() {
                     open={open}
                     onClose={() => setOpen(false)}
                 >
-                    <AddOrEditPost />
+                    <AddOrEditPost 
+                        onClick={handleClickForModal}
+                    />
                 </Modal>
             )}
         </Box>
