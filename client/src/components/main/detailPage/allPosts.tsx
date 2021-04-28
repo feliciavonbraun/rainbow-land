@@ -12,7 +12,7 @@ function AllPosts(){
     
     
     const { posts } = useContext(PostContext);
-    console.log()
+    console.log(posts)
     
     return (
         <Box>
@@ -29,13 +29,11 @@ function AllPosts(){
                 spacing={5}
                 >
                 {posts.map((post, i) =>
-                    // <Box key={i}>
                         <PostCard 
                             key={i}
                             post={post}
                             onClick={handleClickForModal}
                         />
-                    // </Box>
                     )}
             </Grid>
 

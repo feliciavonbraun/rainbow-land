@@ -6,7 +6,6 @@ import { LoginContext } from "../loginContext";
 
 function Header() {
     const { username } = useContext(LoginContext);
-    console.log(username);
 
     return (
         <header style={rootStyle}>

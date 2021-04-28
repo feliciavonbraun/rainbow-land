@@ -28,7 +28,7 @@ export const PostContext = createContext<PostContextValue>({} as PostContextValu
 // function PostProvider: FunctionComponent = ({children: any}) => {
 function PostProvider(props: Props) {
     const [posts, setPosts] = useState<any>([] as Post[]) 
-    console.log(posts)
+    
 
     useEffect(() => {
         async function getPosts() {
@@ -41,7 +41,6 @@ function PostProvider(props: Props) {
     async function getAllPosts() {
         const allPosts = await makeRequest('/api/post/', 'GET'); 
         setPosts(allPosts);
-        console.log(allPosts)
     }
 
     async function createNewPost(rating: number, description: string ) {
@@ -74,9 +73,7 @@ function PostProvider(props: Props) {
         const deletedPost = await makeRequest(`/api/post/${_id}`, 'DELETE') 
         // DELETE http://localhost:4000/api/post/:id 
         
-        setPosts(deletedPost)
-        console.log('Deleted:', _id);
-        
+        setPosts(deletedPost)   
     };
 
     return (
