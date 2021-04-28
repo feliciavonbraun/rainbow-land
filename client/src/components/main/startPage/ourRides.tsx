@@ -22,6 +22,7 @@ function OurRides() {
                     <CarouselCard 
                         carousel={carousel}
                         index={index}
+                        key={index}
                     />
                 )}
             </Grid>

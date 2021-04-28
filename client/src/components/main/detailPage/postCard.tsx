@@ -1,9 +1,10 @@
 import { Box, Button, Grid, Typography } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
-import EditRoundedIcon from '@material-ui/icons/EditRounded';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { useContext } from "react";
 //import { CSSProperties } from '@material-ui/styles';
 import { Post, PostContext } from "../../../postsContext";
+import { LoginContext } from "../../../loginContext";
 
 interface Props {
     post: Post
@@ -14,6 +15,7 @@ function PostCard(props: Props) {
     // Rating ska baseras på användarnas betyg
     const rating = 2;
 
+    const { username } = useContext(LoginContext);
     const { deletePost } = useContext(PostContext);
 
     return (
@@ -45,22 +47,23 @@ function PostCard(props: Props) {
                     <Typography>
                         {props.post.description}
                     </Typography>
-                    <Button 
-                        variant='contained' 
-                        onClick={props.onClick}
-                        style={{margin: '1rem 0'}}
-                    >
-                        Edit
-                    </Button>
-                    <Button
-                        variant='contained'
-                        onClick={() => deletePost}
-                    >
-                        X
-                    </Button>
-                    <Button>
-                        <EditRoundedIcon />
-                    </Button>
+                    {username && 
+                        <Box>
+                            <Button 
+                                variant='contained' 
+                                onClick={props.onClick}
+                                style={{margin: '1rem 0'}}
+                            >
+                                Edit
+                            </Button>
+                            <Button
+                                variant='contained'
+                                onClick={() => deletePost}
+                            >
+                                <DeleteIcon />
+                            </Button>
+                        </Box>
+                    }
                 </Box>
             </Box>
         </Grid>
