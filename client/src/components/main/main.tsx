@@ -1,6 +1,7 @@
 import { Route, Switch } from "react-router";
 import DetailPage from "./detailPage/detailPage";
 import AccountPage from "./loginPage/accountPage";
+import ProfilePage from "./profilePage";
 import StartPage from "./startPage/startpage";
 
 function Main() {
@@ -14,6 +15,9 @@ function Main() {
             </Route>
             <Route path='/accountPage'>
                 <AccountPage />
+            </Route>
+            <Route path='/profile'>
+                <ProfilePage />
             </Route>
         </Switch>
     )
