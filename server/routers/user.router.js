@@ -55,7 +55,7 @@ userRouter.post('/login', async (req, res) => {
     req.session.username = username;
     req.session.role = "user";
 
-    res.status(200).json(`${user.username} is logged in.`);
+    res.status(200).json(user.username);
 });
 
 // Logged in user can only update their own profile, otherwise send 401
