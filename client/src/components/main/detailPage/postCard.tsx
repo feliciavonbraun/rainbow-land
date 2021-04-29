@@ -23,7 +23,7 @@ function PostCard(props: Props) {
             item
             xs={12}
             sm={6}
-            md={3}
+            md={4}
         >
             <Box style={{boxShadow: '5px 5px 10px #BDBDBD'}}>
                 {/* <img
