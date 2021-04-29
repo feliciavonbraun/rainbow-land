@@ -2,7 +2,8 @@ import { Box, Button, FormControl, TextField, Typography } from "@material-ui/co
 import { Rating } from "@material-ui/lab";
 import { useContext, useState } from "react";
 import "../../../makeRequest";
-import { PostContext } from "../../../postsContext";
+// import { PostContext } from "../../../contexts/postsContext";
+import { PostContext } from "../../../contexts/postsContext";
 
 interface Props {
     closeModal: () => void,

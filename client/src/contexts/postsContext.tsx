@@ -1,6 +1,6 @@
 // import { FunctionComponent } from "react";
 import { createContext, useEffect, useState } from "react";
-import { makeRequest } from "./makeRequest";
+import { makeRequest } from "../makeRequest";
 
 
 export interface Post {
@@ -24,8 +24,6 @@ interface Props {
 
 export const PostContext = createContext<PostContextValue>({} as PostContextValue);
 
-// const PostProvider: FunctionComponent = ({ children }) => {
-// function PostProvider: FunctionComponent = ({children: any}) => {
 function PostProvider(props: Props) {
     const [posts, setPosts] = useState<any>([] as Post[])
 

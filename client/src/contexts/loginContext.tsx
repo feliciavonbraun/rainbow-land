@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FunctionComponent, createContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { makeRequest } from './makeRequest';
+import { makeRequest } from '../makeRequest';
 
 // INTERFACE
 
