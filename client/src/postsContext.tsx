@@ -15,11 +15,11 @@ interface PostContextValue {
     getAllPosts: () => void;
     createNewPost: (rating: number, description: string) => void;
     deletePost: (_id: string) => void;
-    updatePost: (_id: string, rating: number, description: string) => void; 
+    updatePost: (_id: string, rating: number, description: string) => void;
 }
 
 interface Props {
-    children: any; 
+    children: any;
 }
 
 export const PostContext = createContext<PostContextValue>({} as PostContextValue);
@@ -27,53 +27,59 @@ export const PostContext = createContext<PostContextValue>({} as PostContextValu
 // const PostProvider: FunctionComponent = ({ children }) => {
 // function PostProvider: FunctionComponent = ({children: any}) => {
 function PostProvider(props: Props) {
-    const [posts, setPosts] = useState<any>([] as Post[]) 
-    
+    const [posts, setPosts] = useState<any>([] as Post[])
+
 
     useEffect(() => {
         async function getPosts() {
-            const allPosts = await makeRequest('/api/post/', 'GET');
+            const allPosts = await makeRequest('/api/post', 'GET');
             setPosts(allPosts)
-        }; 
+        };
         getPosts();
     }, []);
 
     async function getAllPosts() {
-        const allPosts = await makeRequest('/api/post/', 'GET'); 
+        const allPosts = await makeRequest('/api/post/', 'GET');
         setPosts(allPosts);
     }
 
-    async function createNewPost(rating: number, description: string ) {
-
-        const body = {
-            rating,
-            description
-        };
-
-        const newPost = await makeRequest('/api/post/', 'POST', body )
-        // POST http://localhost:4000/api/post
-        setPosts(newPost)
-
-    }; 
-
-    async function updatePost(_id: string, rating: number, description: string) {
+    async function createNewPost(rating: number, description: string) {
 
         const body = {
             rating,
             description,
         };
 
-        const updatedPost = await makeRequest(`/api/post/${_id}`, 'PUT', body)
-        // PUT http://localhost:4000/api/post/:id
+        const post = await makeRequest('/api/post/', 'POST', body)
+        // POST http://localhost:4000/api/post
+        const newPost = [...posts, post]
+        setPosts(newPost)
 
-        setPosts(updatedPost)
     };
 
-    async function deletePost(_id: string) {
-        const deletedPost = await makeRequest(`/api/post/${_id}`, 'DELETE') 
-        // DELETE http://localhost:4000/api/post/:id 
+    async function updatePost(postId: string, rating: number, description: string) {
+
+        const body = {
+            rating,
+            description
+        };
+
+        await makeRequest(`/api/post/${postId}`, 'PUT', body)
+        // PUT http://localhost:4000/api/post/:id
+
+        const post = posts.find((post: {_id:string}) => post._id === postId)
+
         
-        setPosts(deletedPost)   
+        setPosts({...posts, post})
+    };
+
+    // DELETE POST
+    async function deletePost(id: string) {
+        await makeRequest(`/api/post/${id}`, 'DELETE');
+        const notDeletedPosts = posts.filter((post: { _id: string}) => post._id !== id)
+
+        setPosts(notDeletedPosts)
+
     };
 
     return (

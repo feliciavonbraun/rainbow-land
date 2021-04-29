@@ -5,14 +5,25 @@ import "../../../makeRequest";
 import { PostContext } from "../../../postsContext";
 
 interface Props {
-    onClick: () => void
+    closeModal: () => void,
+    addOrUpdate: string
+    postId: string
 }
 
 function AddOrEditPost(props: Props) {
-
     const [comment, setComment] = useState('')
+    const [rating, setRating] = useState(0)
+    const { createNewPost, updatePost } = useContext(PostContext);
+    
 
-    const {createNewPost} = useContext(PostContext);
+    function handleCreateNewPost() {
+        createNewPost(rating, comment)
+    }
+
+    function handleUpdatePost() {
+        updatePost(props.postId, rating, comment)
+    }
+
 
     return (
         <Box
@@ -34,44 +45,51 @@ function AddOrEditPost(props: Props) {
                 <Typography variant='h3' align='center'>
                     Review
                 </Typography>
-                <Box 
-                    display='flex' 
-                    flexDirection='column' 
-                    justifyContent='space-around' 
-                    alignItems='center' 
+                <Box
+                    display='flex'
+                    flexDirection='column'
+                    justifyContent='space-around'
+                    alignItems='center'
                     height='10rem'
                     marginBottom='1rem'
                 >
-                    <Rating id='ratingInput' defaultValue={3} />
-                    <TextField 
-                        id='imageInput' 
-                        label='Add image'
-                    />
-                    <TextField 
-                        id='commentInput' 
-                        label='Comment' 
+                    <Rating name='Rating input' defaultValue={3} value={rating} onChange={() => setRating(1)} />
+                    
+                    <TextField
+                        id='commentInput'
+                        label='Comment'
                         multiline
                         required
                         value={comment}
                         onChange={event => setComment(event.target.value)}
                     />
                 </Box>
-                <Box 
-                    display='flex' 
-                    justifyContent='space-around' 
+                <Box
+                    display='flex'
+                    justifyContent='space-around'
                 >
-                    <Button 
-                        onClick={props.onClick}
+                    <Button
+                        onClick={props.closeModal}
                     >
                         Cancel
                     </Button>
-                    <Button 
-                        variant='contained' 
-                        color='secondary'
-                        onClick={() => createNewPost}
-                    >
-                        Add
-                    </Button>
+                    {props.addOrUpdate === 'Edit'
+                        ? <Button
+                                variant='contained'
+                                color='secondary'
+                                onClick={handleUpdatePost}
+                            >
+                                Update
+                            </Button>
+
+                           :<Button
+                                variant='contained'
+                                color='secondary'
+                                onClick={handleCreateNewPost}
+                            >
+                                Add
+                            </Button> 
+                    }
                 </Box>
             </Box>
         </Box>

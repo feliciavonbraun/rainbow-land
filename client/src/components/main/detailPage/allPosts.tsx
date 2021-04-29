@@ -1,19 +1,23 @@
-import { Box, Button, Grid, Modal } from "@material-ui/core";
+import { Box, Button, Grid } from "@material-ui/core";
 import { useContext, useState } from "react";
 import { LoginContext } from "../../../loginContext";
 import { PostContext } from "../../../postsContext";
-import AddOrEditPost from "./addOrEditPost";
 import PostCard from "./postCard";
 
-function AllPosts(){
-    const [open, setOpen] = useState(false)
-    const handleClickForModal = () => {
-        setOpen(!open)
-    };
-    
+function AllPosts(){   
+    const [open, setOpen] = useState(false);
+    const [clickedButton, setClickedButton] = useState('');
+
     const { username } = useContext(LoginContext);
     const { posts } = useContext(PostContext);
-    console.log(posts)
+
+    function handleModal() {
+        setOpen(!open)
+    }
+    
+    function handleClickedButton(e: any) {
+        setClickedButton(e.target.innerHTML)
+    }
     
     return (
         <Box>
@@ -22,7 +26,7 @@ function AllPosts(){
                     variant='contained'
                     color='secondary'
                     style={{ margin: '2rem 0 1rem 0' }}
-                    onClick={() => setOpen(true)}
+                    onClick={(e) => {handleClickedButton(e); setOpen(true)}}
                     >
                     Create Post
                 </Button>
@@ -35,21 +39,13 @@ function AllPosts(){
                         <PostCard 
                             key={i}
                             post={post}
-                            onClick={handleClickForModal}
+                            handleModal={handleModal}
+                            isOpen={open}
+                            clickedButton={clickedButton}
+                            handleButtonClick={(e: any) => handleClickedButton(e)}
                         />
                     )}
             </Grid>
-
-            {open && (
-                <Modal
-                open={open}
-                onClose={() => setOpen(false)}
-                >
-                    <AddOrEditPost 
-                        onClick={handleClickForModal}
-                        />
-                </Modal>
-            )}
         </Box>
     )
 }
