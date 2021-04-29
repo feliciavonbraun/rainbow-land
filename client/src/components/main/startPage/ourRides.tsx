@@ -27,8 +27,8 @@ function OurRides() {
                 )}
             </Grid>
         </Box>
-    )
-}
+    );
+};
 
 const h2: CSSProperties = {
     position: 'absolute',

@@ -7,6 +7,7 @@ import { LoginContext } from "../loginContext";
 function Header() {
     const { username } = useContext(LoginContext);
 
+
     return (
         <header style={rootStyle}>
             <Link to="/">
@@ -37,7 +38,7 @@ function Header() {
             }
         </header>
     )
-}
+};
 
 const rootStyle: CSSProperties = {
     position: 'relative',
