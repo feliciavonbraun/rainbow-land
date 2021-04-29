@@ -30,9 +30,6 @@ function AddOrEditPost(props: Props) {
         props.closeModal() 
     }
 
-
-    
-
     return (
         <Box
             display='flex'
