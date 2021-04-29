@@ -1,4 +1,3 @@
-// import { FunctionComponent } from "react";
 import { createContext, useEffect, useState } from "react";
 import { makeRequest } from "../makeRequest";
 

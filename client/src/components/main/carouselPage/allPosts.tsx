@@ -4,13 +4,19 @@ import { LoginContext } from "../../../contexts/loginContext";
 import { PostContext } from "../../../contexts/postsContext";
 import PostCard from "./postCard";
 
-function AllPosts(){   
+interface Props {
+    carouselName: string | undefined
+}
+
+function AllPosts(props: Props){   
     const [open, setOpen] = useState(false);
     const [clickedButton, setClickedButton] = useState('');
-
+    
     const { username } = useContext(LoginContext);
     const { posts } = useContext(PostContext);
-
+    
+    const thisCarouselPosts = posts.filter((post) => post.carouselTag === props.carouselName);
+    
     function handleModal() {
         setOpen(!open)
     }
@@ -18,6 +24,7 @@ function AllPosts(){
     function handleClickedButton(e: any) {
         setClickedButton(e.target.innerHTML)
     }
+   
 
     return (
         <Box>
@@ -35,7 +42,7 @@ function AllPosts(){
                 container
                 spacing={5}
                 >
-                {posts.map((post, i) =>
+                {thisCarouselPosts.map((post, i) =>
                         <PostCard 
                             key={i}
                             post={post}
