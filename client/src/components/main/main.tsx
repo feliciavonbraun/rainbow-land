@@ -1,6 +1,6 @@
 import { Route, Switch } from "react-router";
 import CarouselPage from "./carouselPage/carouselPage";
-import AccountPage from "./loginPage/accountPage";
+import AccountPage from "./accountPage/accountPage";
 import ProfilePage from "./profilePage";
 import StartPage from "./startPage/startpage";
 

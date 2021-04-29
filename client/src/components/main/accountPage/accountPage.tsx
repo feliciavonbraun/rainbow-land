@@ -1,8 +1,8 @@
 import { Button, Divider, Box } from "@material-ui/core";
 import { CSSProperties, useState } from "react";
 import { Link } from "react-router-dom";
-import CreateAccount from "./createAccount";
-import LoginPage from "./loginPage";
+import RegisterForm from "./registerForm";
+import SignInForm from "./signInForm";
 
 function AccountPage() {
 
@@ -20,9 +20,9 @@ function AccountPage() {
                 <Box style={formContainer}>
 
                     {isToggledForm === false ?
-                        <LoginPage />
+                        <SignInForm />
                         :
-                        <CreateAccount />
+                        <RegisterForm />
                     }
                     <Divider />
                     <Button

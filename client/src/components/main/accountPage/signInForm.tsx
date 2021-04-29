@@ -20,8 +20,20 @@ function LoginPage() {
 
     return (
         <FormControl style={form}>
-            <TextField type='text' value={username} label="Username" onChange={(event) => {setUsername(event.target.value)}} required></TextField>
-            <TextField type='password' value={password} label="Password" onChange={(event) => {setPassword(event.target.value)}} required></TextField>
+            <TextField 
+                type='text' 
+                value={username} 
+                label="Username" 
+                required
+                onChange={(event) => {setUsername(event.target.value)}} 
+            />
+            <TextField 
+                type='password' 
+                value={password} 
+                label="Password" 
+                required
+                onChange={(event) => {setPassword(event.target.value)}} 
+            />
             <Button
                 style={{ marginTop: '1rem' }}
                 type='submit'
@@ -34,11 +46,10 @@ function LoginPage() {
             </Button>
         </FormControl>
     )
-}
+};
 export default LoginPage;
 
 const form: CSSProperties = {
     width: '60%',
     padding: '1rem',
-}
-
+};
