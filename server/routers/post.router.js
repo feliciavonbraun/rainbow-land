@@ -1,8 +1,6 @@
 const express = require('express');
-const { rawListeners } = require('../models/post.model');
 const postRouter = express.Router();
 const PostModel = require('../models/post.model');
-const UserModel = require('../models/user.model');
 
 postRouter.get('/', async (req, res) => {
     const docs = await PostModel.find({});
@@ -20,7 +18,8 @@ postRouter.post('/', (req, res) => {
     const post = new PostModel({
         username: req.session.username,
         rating: req.body.rating,
-        description: req.body.description
+        comment: req.body.comment,
+        carouselTag: req.body.carouselTag
     });
 
     post.save();
@@ -38,9 +37,6 @@ postRouter.put('/:id', async (req, res) => {
     try {
         const post = await PostModel.findOne({ _id: req.params.id });
 
-        console.log(post.username)
-        console.log(req.session.username)
-
         if (post.username === req.session.username) {
 
             await PostModel.findByIdAndUpdate(
@@ -48,7 +44,8 @@ postRouter.put('/:id', async (req, res) => {
                 {
                     $set: {
                         rating: req.body.rating,
-                        description: req.body.description
+                        comment: req.body.comment,
+                        carouselTag: req.body.carouselTag
                     },
                 },
             );

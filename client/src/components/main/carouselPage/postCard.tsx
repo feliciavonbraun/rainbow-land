@@ -47,7 +47,7 @@ function PostCard(props: Props) {
                                 type='text'
                                 // onChange={updatePost(event?.target.value)}
                             >
-                                {props.post.description}
+                                {props.post.comment}
                             </TextField>
                         </Box>
                         :
@@ -62,7 +62,7 @@ function PostCard(props: Props) {
                                 readOnly
                             />
                             <Typography>
-                                {props.post.description}
+                                {props.post.comment}
                             </Typography>
                         </Box>
                     }

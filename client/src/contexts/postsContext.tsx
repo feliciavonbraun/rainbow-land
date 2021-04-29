@@ -5,16 +5,17 @@ export interface Post {
     _id: string,
     username: string;
     rating: number;
-    description: string;
-};
+    comment: string;
+    carouselTag: string;
+}
 
 interface PostContextValue {
     posts: Post[];
     getAllPosts: () => void;
-    createNewPost: (rating: number, description: string) => void;
+    createNewPost: (rating: number, comment: string, carouselTag: string) => void;
     deletePost: (_id: string) => void;
-    updatePost: (_id: string, rating: number, description: string) => void;
-};
+    updatePost: (_id: string, rating: number, comment: string) => void;
+}
 
 interface Props {
     children: any;
@@ -39,31 +40,24 @@ function PostProvider(props: Props) {
         setPosts(allPosts);
     };
 
-    async function createNewPost(rating: number, description: string) {
-
+    async function createNewPost(rating: number, comment: string, carouselTag: string) {
         const body = {
             rating,
-            description,
+            comment,
+            carouselTag
         };
 
         await makeRequest('/api/post/', 'POST', body)
-        // POST http://localhost:4000/api/post
         await getAllPosts()
-
     };
 
-    async function updatePost(postId: string, rating: number, description: string) {
-
+    async function updatePost(postId: string, rating: number, comment: string) {
         const body = {
             rating,
-            description
+            comment
         };
 
         await makeRequest(`/api/post/${postId}`, 'PUT', body)
-        // PUT http://localhost:4000/api/post/:id
-        // const post = posts.find((post: {_id:string}) => post._id === postId)
-        // setPosts({...posts, post})
-        console.log(postId);
         await getAllPosts();
     };
 
@@ -73,7 +67,6 @@ function PostProvider(props: Props) {
         const notDeletedPosts = posts.filter((post: { _id: string}) => post._id !== id)
 
         setPosts(notDeletedPosts)
-
     };
 
     return (

@@ -4,9 +4,15 @@ import { LoginContext } from "../../../contexts/loginContext";
 import { PostContext } from "../../../contexts/postsContext";
 import PostCard from "./postCard";
 
-function AllPosts(){   
+interface Props {
+    carouselName: string | undefined
+}
+
+function AllPosts(props: Props){   
     const { username } = useContext(LoginContext);
     const { posts } = useContext(PostContext);
+
+    const thisCarouselPosts = posts.filter((post) => post.carouselTag === props.carouselName);
 
 
     return (
@@ -24,7 +30,7 @@ function AllPosts(){
                 container
                 spacing={5}
                 >
-                {posts.map((post, i) =>
+                {thisCarouselPosts.map((post, i) =>
                         <PostCard 
                             key={i}
                             post={post}

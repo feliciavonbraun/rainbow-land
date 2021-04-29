@@ -7,8 +7,7 @@ import Header from "../../header";
 
 
 function CarouselPage(){
-    const urlPath = window.location.pathname;
-    const carouselId = Number(urlPath.split('/')[2]);
+    const carouselId = Number(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
     const carousel = carousels.find(carousel => carousel.id === carouselId);
     
     return (
@@ -19,7 +18,7 @@ function CarouselPage(){
             </Box>
             <Box width='80%' margin='0 auto'>
                 <CarouselInfo carouselName={carousel?.name} />
-                <AllPosts />
+                <AllPosts carouselName={carousel?.name}/>
             </Box>
         </main>
     )
