@@ -1,31 +1,23 @@
 # Rainbow Land 
 
+We have created a wesite for our tivoli where you can create your account, log in and add your personal review about each and every of our carousels. If you change your mind you can always edit and delete your posts. Enjoy! 
+
 ## Creators
 [Jennifer](https://github.com/JenniferTendell),
 [Mikaela](https://github.com/MikaelaAnd),
 [Felicia](https://github.com/feliciavonbraun)
 
 
-# Getting Started with Create React App
+### Start our project: 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
+In the project directory, you run: `npm i` in both server and client. Then you run: `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
 
 ### `npm run build`
 
