@@ -1,14 +1,12 @@
-// import { FunctionComponent } from "react";
 import { createContext, useEffect, useState } from "react";
 import { makeRequest } from "../makeRequest";
-
 
 export interface Post {
     _id: string,
     username: string;
     rating: number;
     description: string;
-}
+};
 
 interface PostContextValue {
     posts: Post[];
@@ -16,16 +14,16 @@ interface PostContextValue {
     createNewPost: (rating: number, description: string) => void;
     deletePost: (_id: string) => void;
     updatePost: (_id: string, rating: number, description: string) => void;
-}
+};
 
 interface Props {
     children: any;
-}
+};
 
 export const PostContext = createContext<PostContextValue>({} as PostContextValue);
 
 function PostProvider(props: Props) {
-    const [posts, setPosts] = useState<any>([] as Post[])
+    const [posts, setPosts] = useState<any>([] as Post[]);
 
 
     useEffect(() => {
@@ -39,7 +37,7 @@ function PostProvider(props: Props) {
     async function getAllPosts() {
         const allPosts = await makeRequest('/api/post/', 'GET');
         setPosts(allPosts);
-    }
+    };
 
     async function createNewPost(rating: number, description: string) {
 
