@@ -4,7 +4,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { useContext, useEffect, useState } from "react";
 //import { CSSProperties } from '@material-ui/styles';
 import { Post, PostContext } from "../../../postsContext";
-import { LoginContext } from "../../../loginContext";
+import { LoginContext } from "../../../contexts/loginContext";
 import AddOrEditPost from "./addOrEditPost";
 
 interface Props {

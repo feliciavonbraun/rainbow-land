@@ -2,7 +2,7 @@ import { Button } from "@material-ui/core";
 import { CSSProperties, useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg"
-import { LoginContext } from "../loginContext";
+import { LoginContext } from "../contexts/loginContext";
 
 function Header() {
     const { username } = useContext(LoginContext);

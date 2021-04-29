@@ -2,7 +2,7 @@ import { Button } from "@material-ui/core";
 import { CSSProperties } from "@material-ui/styles";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { LoginContext } from "../../loginContext";
+import { LoginContext } from "../../contexts/loginContext";
 
 
 function ProfilePage() {

@@ -1,6 +1,6 @@
 import { Box, Button, Grid } from "@material-ui/core";
 import { useContext, useState } from "react";
-import { LoginContext } from "../../../loginContext";
+import { LoginContext } from "../../../contexts/loginContext";
 import { PostContext } from "../../../postsContext";
 import PostCard from "./postCard";
 

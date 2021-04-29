@@ -1,7 +1,7 @@
 import { Button, FormControl, TextField } from "@material-ui/core";
 import {  useContext, useState } from "react";
 import { CSSProperties } from "react";
-import { LoginContext } from "../../../loginContext";
+import { LoginContext } from "../../../contexts/loginContext";
 
 function LoginPage() {
 
