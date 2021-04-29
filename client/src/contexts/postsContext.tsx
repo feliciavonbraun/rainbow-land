@@ -19,12 +19,12 @@ interface PostContextValue {
 
 interface Props {
     children: any;
-}
+};
 
 export const PostContext = createContext<PostContextValue>({} as PostContextValue);
 
 function PostProvider(props: Props) {
-    const [posts, setPosts] = useState<any>([] as Post[])
+    const [posts, setPosts] = useState<any>([] as Post[]);
 
 
     useEffect(() => {
