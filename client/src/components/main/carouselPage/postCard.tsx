@@ -48,7 +48,7 @@ function PostCard(props: Props) {
                         readOnly
                     />
                     <Typography>
-                        {props.post.description}
+                        {props.post.comment}
                     </Typography>
                     {username === props.post.username &&
                         <Box

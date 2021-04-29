@@ -2,7 +2,6 @@ import { Box, Button, FormControl, TextField, Typography } from "@material-ui/co
 import { Rating } from "@material-ui/lab";
 import { useContext, useState } from "react";
 import "../../../makeRequest";
-// import { PostContext } from "../../../contexts/postsContext";
 import { PostContext } from "../../../contexts/postsContext";
 
 interface Props {
@@ -12,24 +11,27 @@ interface Props {
 }
 
 function AddOrEditPost(props: Props) {
-    const [comment, setComment] = useState('')
-
     // Fixa rating
     const rating = 3
 
+    const carouselTag = 'Roller coaster'
+
+    const [comment, setComment] = useState('')
+
     const { createNewPost, updatePost } = useContext(PostContext);
 
-    // Fråga: Hur kan vi uppdatera sidan när ny post läggs till?
+
     function handleCreateNewPost() {
-        createNewPost(rating, comment)
+        createNewPost(rating, comment, carouselTag)
         props.closeModal() 
-    }
+    };
 
     function handleUpdatePost() {
         updatePost(props.postId, rating, comment) 
         props.closeModal() 
-    }
-    console.log(props.postId)
+    };
+  
+
     return (
         <Box
             display='flex'
