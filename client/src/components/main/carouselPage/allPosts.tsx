@@ -18,7 +18,7 @@ function AllPosts(){
     function handleClickedButton(e: any) {
         setClickedButton(e.target.innerHTML)
     }
-    
+
     return (
         <Box>
             {username &&
