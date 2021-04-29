@@ -4,7 +4,7 @@ import { Redirect } from "react-router";
 import { makeRequest } from "../../../makeRequest";
 
 
-function CreateAccount() {
+function RegisterForm() {
     const [ createUsername, setCreateUsername ] = useState('');
     const [ createPassword, setCreatePassword ] = useState('');
     const [ userRegistered, setUserRegistered ] = useState(false)
@@ -41,7 +41,7 @@ function CreateAccount() {
         </FormControl>
     )
 };
-export default CreateAccount;
+export default RegisterForm;
 
 const form: CSSProperties = {
     width: '60%',

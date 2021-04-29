@@ -3,33 +3,42 @@ import {  useContext, useState } from "react";
 import { CSSProperties } from "react";
 import { LoginContext } from "../../../contexts/loginContext";
 
-function LoginPage() {
-
-    const [  username, setUsername ] = useState('');
+function SignInForm() {
+    const [  inputUsername, setInputUsername ] = useState('');
     const [  password, setPassword ] = useState('');
-    const { login } = useContext(LoginContext);
+    const [ errorMessage, setErrorMessage ] = useState(false);
+    const { login, username } = useContext(LoginContext);
+    const isFormValid = inputUsername && password;
     
-    const handleLogin = async () => {
-        await login(username, password)
+    const handleLogin = () => {
+         login(inputUsername, password)
+        if (inputUsername === username) {
+            setErrorMessage(false);
+        } else {
+            setErrorMessage(true)
+        }
     }
  
-    const isFormValid = username && password;
 
     return (
         <FormControl style={form}>
             <TextField 
                 type='text' 
-                value={username} 
+                value={inputUsername} 
                 label="Username" 
                 required
-                onChange={(event) => {setUsername(event.target.value)}} 
+                onChange={(event) => {setInputUsername(event.target.value)}} 
+                error={errorMessage}
+                helperText='Incorrect inputUsername'
             />
-            <TextField 
+            <TextField
                 type='password' 
                 value={password} 
                 label="Password" 
                 required
                 onChange={(event) => {setPassword(event.target.value)}} 
+                error={errorMessage}
+                helperText='Incorrect password'
             />
             <Button
                 style={{ marginTop: '1rem' }}
@@ -44,7 +53,7 @@ function LoginPage() {
         </FormControl>
     )
 };
-export default LoginPage;
+export default SignInForm;
 
 const form: CSSProperties = {
     width: '60%',
