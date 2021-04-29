@@ -19,11 +19,11 @@ function Footer() {
             <Box
                 display='flex'
                 justifyContent='center'
-                height='20rem'
+                height='7rem'
                 bgcolor='var(--clrWhite)'
             >
                 <img 
-                    style={{width:'50%'}}
+                    style={{width:'70%'}}
                     src={logo} 
                     alt="Rainbow Land"
                 />
