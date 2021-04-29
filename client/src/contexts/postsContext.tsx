@@ -63,11 +63,10 @@ function PostProvider(props: Props) {
 
         await makeRequest(`/api/post/${postId}`, 'PUT', body)
         // PUT http://localhost:4000/api/post/:id
-
-        const post = posts.find((post: {_id:string}) => post._id === postId)
-
-        
-        setPosts({...posts, post})
+        // const post = posts.find((post: {_id:string}) => post._id === postId)
+        // setPosts({...posts, post})
+        console.log(postId);
+        await getAllPosts();
     };
 
     // DELETE POST
