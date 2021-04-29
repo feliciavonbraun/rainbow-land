@@ -6,7 +6,7 @@ import AllPosts from "./allPosts";
 import Header from "../../header";
 
 
-function DetailPage(){
+function CarouselPage(){
     const urlPath = window.location.pathname;
     const carouselId = Number(urlPath.split('/')[2]);
     const carousel = carousels.find(carousel => carousel.id === carouselId);
@@ -31,4 +31,4 @@ const imageStyle: CSSProperties = {
     objectFit: 'cover',
 }
 
-export default DetailPage; 
+export default CarouselPage; 

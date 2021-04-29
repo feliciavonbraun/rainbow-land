@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router";
-import DetailPage from "./detailPage/detailPage";
+import CarouselPage from "./carouselPage/carouselPage";
 import AccountPage from "./loginPage/accountPage";
 import ProfilePage from "./profilePage";
 import StartPage from "./startPage/startpage";
@@ -11,7 +11,7 @@ function Main() {
                 <StartPage />
             </Route>
             <Route path='/carousel/:id' >
-                <DetailPage />
+                <CarouselPage />
             </Route>
             <Route path='/accountPage'>
                 <AccountPage />
