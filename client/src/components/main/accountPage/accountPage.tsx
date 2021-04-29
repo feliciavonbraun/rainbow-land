@@ -6,7 +6,7 @@ import SignInForm from "./signInForm";
 
 function AccountPage() {
 
-    const [isToggledForm, setIsToggledForm] = useState(false);
+    const [newUser, setNewUser] = useState(false);
 
     return (
         <Box style={rootStyle}>
@@ -19,7 +19,7 @@ function AccountPage() {
 
                 <Box style={formContainer}>
 
-                    {isToggledForm === false ?
+                    {newUser === false ?
                         <SignInForm />
                         :
                         <RegisterForm />
@@ -29,9 +29,9 @@ function AccountPage() {
                         style={{ margin: '1rem' }}
                         variant='contained'
                         color='secondary'
-                        onClick={() => setIsToggledForm(!isToggledForm)}
+                        onClick={() => setNewUser(!newUser)}
                     >
-                        {isToggledForm === false ?
+                        {newUser === false ?
                             'Create Account'
                             :
                             'Sign in'

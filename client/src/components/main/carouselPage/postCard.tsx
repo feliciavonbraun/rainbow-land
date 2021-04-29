@@ -1,7 +1,7 @@
 import { Box, Button, Grid, Modal, Typography } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
 import DeleteIcon from '@material-ui/icons/Delete';
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 //import { CSSProperties } from '@material-ui/styles';
 import { Post, PostContext } from "../../../contexts/postsContext";
 import { LoginContext } from "../../../contexts/loginContext";
@@ -18,15 +18,8 @@ interface Props {
 function PostCard(props: Props) {
     // Rating ska baseras på användarnas betyg
     const rating = 2;
-
     const { username } = useContext(LoginContext);
     const { deletePost } = useContext(PostContext);
-
-    const [postId, setPostId] = useState('');
-    
-    useEffect(() => {
-        setPostId(props.post._id)
-    },[props.post._id])
 
     return (
         <Grid
@@ -85,7 +78,7 @@ function PostCard(props: Props) {
                         <AddOrEditPost
                             closeModal={props.handleModal}
                             addOrUpdate={props.clickedButton}
-                            postId={postId}
+                            postId={props.post._id}
                         />
                     </Modal>
                 )}

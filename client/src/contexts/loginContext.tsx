@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FunctionComponent, createContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeRequest } from '../makeRequest';
@@ -21,11 +21,12 @@ const LoginProvider: FunctionComponent = ({ children }) => {
     const history = useHistory();
 
     // Check if user is logged in
-    async function checkIfLoggedIn()  {
-        const username = await makeRequest('/api/user/authorization', 'GET')
-        setUsername(username);
-    }
-
+    useEffect(() => {
+        async function checkIfLoggedIn()  {
+            const username = await makeRequest('/api/user/authorization', 'GET')
+            setUsername(username);
+        } checkIfLoggedIn();
+    }, [])
 
    // Login user
    async function login(username: string, password: string) {
@@ -33,14 +34,12 @@ const LoginProvider: FunctionComponent = ({ children }) => {
            username,
            password
        }
-       
-       await makeRequest('/api/user/login', 'POST', body);
-       
-       if (checkIfLoggedIn()){
+       const checkUser = await makeRequest('/api/user/login', 'POST', body);     
+       if (checkUser === username){
             setUsername(username);
             history.push("/");
             return
-       }
+       } 
     } 
 
     // Logout user

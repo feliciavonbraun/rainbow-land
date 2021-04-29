@@ -29,7 +29,7 @@ function AddOrEditPost(props: Props) {
         updatePost(props.postId, rating, comment) 
         props.closeModal() 
     }
-
+    console.log(props.postId)
     return (
         <Box
             display='flex'
