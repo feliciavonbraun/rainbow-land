@@ -57,7 +57,7 @@ function PostCard(props: Props) {
                     <Typography>
                         {props.post.description}
                     </Typography>
-                    {username &&
+                    {username === props.post.username &&
                         <Box
                             display='flex'
                             justifyContent='space-between'

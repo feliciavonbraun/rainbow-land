@@ -10,10 +10,7 @@ function LoginPage() {
     const { login } = useContext(LoginContext);
     
     const handleLogin = async () => {
-        const errorMessage = await login(username, password)
-        if (errorMessage) {
-            // visa meddelandet
-        }
+        await login(username, password)
     }
  
     const isFormValid = username && password;
