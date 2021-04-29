@@ -1,4 +1,4 @@
-import { Box, Button, TextField, Typography } from "@material-ui/core";
+import { Box, Button, FormControl, TextField, Typography } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
 import { useContext, useState } from "react";
 import "../../../makeRequest";
@@ -12,18 +12,25 @@ interface Props {
 
 function AddOrEditPost(props: Props) {
     const [comment, setComment] = useState('')
-    const [rating, setRating] = useState(0)
-    const { createNewPost, updatePost } = useContext(PostContext);
-    
 
+    // Fixa rating
+    const rating = 3
+
+    const { createNewPost, updatePost } = useContext(PostContext);
+
+    // Fråga: Hur kan vi uppdatera sidan när ny post läggs till?
     function handleCreateNewPost() {
         createNewPost(rating, comment)
+        props.closeModal() 
     }
 
     function handleUpdatePost() {
-        updatePost(props.postId, rating, comment)
+        updatePost(props.postId, rating, comment) 
+        props.closeModal() 
     }
 
+
+    
 
     return (
         <Box
@@ -53,16 +60,18 @@ function AddOrEditPost(props: Props) {
                     height='10rem'
                     marginBottom='1rem'
                 >
-                    <Rating name='Rating input' defaultValue={3} value={rating} onChange={() => setRating(1)} />
-                    
-                    <TextField
-                        id='commentInput'
-                        label='Comment'
-                        multiline
-                        required
-                        value={comment}
-                        onChange={event => setComment(event.target.value)}
-                    />
+                    <FormControl>
+                        <Rating name='Rating-input' value={rating}/>
+
+                        <TextField
+                            id='commentInput'
+                            label='Comment'
+                            multiline
+                            required
+                            value={comment}
+                            onChange={event => setComment(event.target.value)}
+                        />
+                    </FormControl>
                 </Box>
                 <Box
                     display='flex'
@@ -75,20 +84,20 @@ function AddOrEditPost(props: Props) {
                     </Button>
                     {props.addOrUpdate === 'Edit'
                         ? <Button
-                                variant='contained'
-                                color='secondary'
-                                onClick={handleUpdatePost}
-                            >
-                                Update
+                            variant='contained'
+                            color='secondary'
+                            onClick={handleUpdatePost}
+                        >
+                            Update
                             </Button>
 
-                           :<Button
-                                variant='contained'
-                                color='secondary'
-                                onClick={handleCreateNewPost}
-                            >
-                                Add
-                            </Button> 
+                        : <Button
+                            variant='contained'
+                            color='secondary'
+                            onClick={handleCreateNewPost}
+                        >
+                            Add
+                            </Button>
                     }
                 </Box>
             </Box>

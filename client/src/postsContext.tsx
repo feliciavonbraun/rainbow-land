@@ -50,10 +50,9 @@ function PostProvider(props: Props) {
             description,
         };
 
-        const post = await makeRequest('/api/post/', 'POST', body)
+        await makeRequest('/api/post/', 'POST', body)
         // POST http://localhost:4000/api/post
-        const newPost = [...posts, post]
-        setPosts(newPost)
+        await getAllPosts()
 
     };
 
