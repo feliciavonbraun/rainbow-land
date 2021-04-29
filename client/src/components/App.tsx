@@ -3,7 +3,7 @@ import LoginProvider from '../contexts/loginContext'
 import { BrowserRouter } from "react-router-dom";
 import theme from "../Theme";
 import Layout from "./layout";
-import PostProvider from "../postsContext";
+import PostProvider from "../contexts/postsContext";
 
 
 function App() {

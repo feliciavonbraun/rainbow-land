@@ -3,7 +3,7 @@ import { Rating } from "@material-ui/lab";
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useContext, useEffect, useState } from "react";
 //import { CSSProperties } from '@material-ui/styles';
-import { Post, PostContext } from "../../../postsContext";
+import { Post, PostContext } from "../../../contexts/postsContext";
 import { LoginContext } from "../../../contexts/loginContext";
 import AddOrEditPost from "./addOrEditPost";
 
