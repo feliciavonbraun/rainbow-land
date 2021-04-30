@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
     username: { type: 'String', required: true },
     rating: { type: 'Number', required: true },
+    image: {type: 'String' },
     comment: { type: 'String', max: 150 },
     carouselTag: { type: 'string', required: true}
 });

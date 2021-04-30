@@ -18,6 +18,7 @@ postRouter.post('/', (req, res) => {
     const post = new PostModel({
         username: req.session.username,
         rating: req.body.rating,
+        image: req.body.image,
         comment: req.body.comment,
         carouselTag: req.body.carouselTag
     });
@@ -44,8 +45,8 @@ postRouter.put('/:id', async (req, res) => {
                 {
                     $set: {
                         rating: req.body.rating,
+                        image: req.body.image,
                         comment: req.body.comment,
-                        carouselTag: req.body.carouselTag
                     },
                 },
             );
