@@ -9,7 +9,7 @@ import Header from "../../header";
 function CarouselPage(){
     const carouselId = Number(window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
     const carousel = carousels.find(carousel => carousel.id === carouselId);
-    
+  
     return (
         <main>
             <Header />

@@ -2,40 +2,28 @@ import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import { Rating } from "@material-ui/lab";
 import { Box, Typography } from "@material-ui/core";
 import { CSSProperties } from 'react';
+import { Carousel } from '../../mockedInterfaceCarousels';
 
 interface Props {
-    carouselName: string | undefined
+    carousel: Carousel
 };
 
 function CarouselInfo(props: Props) {
-    // Rating ska baseras på användarnas betyg
-    const rating = 2;
-
     return (
         <Box position='relative'>
             <Typography variant='h2' style={h2}>
-                {props.carouselName}
+                {props.carousel.name}
             </Typography>
-            <Box paddingTop='5rem'>
-                <Typography >
-                    Rating
-                </Typography>
-                <Rating
-                    name='Carousel rating'
-                    value={rating}
-                    readOnly
-                />
-                <Typography>
-                    Tickets
-                </Typography>
-                <Rating
-                    name='Tickets'
-                    value={3}
-                    icon={<ConfirmationNumberIcon htmlColor='#F8ABC7' />}
-                    readOnly
-                    emptyIcon={<ConfirmationNumberIcon htmlColor='#BDBDBD' />}
-                />
-            </Box>
+            <Typography>
+                Price
+            </Typography>
+            <Rating
+                name='Tickets'
+                value={props.carousel.tickets}
+                icon={<ConfirmationNumberIcon htmlColor='#F8ABC7' />}
+                readOnly
+                emptyIcon={<ConfirmationNumberIcon htmlColor='#BDBDBD' />}
+            />
         </Box>
     );
 };
