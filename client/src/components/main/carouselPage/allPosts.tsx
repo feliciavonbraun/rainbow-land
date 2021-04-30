@@ -77,7 +77,6 @@ function AllPosts(props: Props){
                     </Box>
                 </Box>
             )}
-
             <Box marginTop='3rem'>
             <Grid
                 container
