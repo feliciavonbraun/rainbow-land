@@ -6,7 +6,7 @@ import { PostContext } from "../../../contexts/postsContext";
 import PostCard from "./postCard";
 
 interface Props {
-    carouselName: string | undefined
+    carouselName: string
 };
 
 function AllPosts(props: Props){   
@@ -22,7 +22,7 @@ function AllPosts(props: Props){
     function handleClick() {
         console.log('hej')
         setIsOpen(false)
-        createNewPost( rating, newComment)
+        createNewPost( rating, newComment, props.carouselName)
     };
 
 

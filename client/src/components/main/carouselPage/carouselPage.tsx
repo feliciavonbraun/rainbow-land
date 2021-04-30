@@ -18,7 +18,7 @@ function CarouselPage(){
             </Box>
             <Box width='80%' margin='0 auto'>
                 <CarouselInfo carouselName={carousel?.name} />
-                <AllPosts carouselName={carousel?.name}/>
+                <AllPosts carouselName={carousel!.name}/>
             </Box>
         </main>
     )
