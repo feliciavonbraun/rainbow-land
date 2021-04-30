@@ -12,7 +12,7 @@ interface Props {
 function PostCard(props: Props) {
     const { username } = useContext(LoginContext);
     const { deletePost, updatePost } = useContext(PostContext);
-    const [ updatedComment, setUpdatedComment] = useState(props.post.description)
+    const [ updatedComment, setUpdatedComment] = useState(props.post.comment)
 
     // Rating ska baseras på användarnas betyg
     const rating = 2;
