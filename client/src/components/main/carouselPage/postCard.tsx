@@ -7,6 +7,8 @@ import { Post, PostContext } from "../../../contexts/postsContext";
 import { LoginContext } from "../../../contexts/loginContext";
 interface Props {
     post: Post,
+    removeCommentExist: () => void,
+    removeComment: () => void
 }
 
 function PostCard(props: Props) {
@@ -20,8 +22,14 @@ function PostCard(props: Props) {
     const [editFields, setEditFields] = useState(false);
 
     function handleClick() {
-        setEditFields(!editFields)
-        updatePost(props.post._id, rating, updatedComment)
+        setEditFields(!editFields);
+        updatePost(props.post._id, rating, updatedComment);
+    };
+
+    function handleDeletePost() {
+        deletePost(props.post._id);
+        props.removeCommentExist();
+        props.removeComment();
     };
 
     return (
@@ -93,7 +101,7 @@ function PostCard(props: Props) {
                                 }
                             </Button>
                             <Button
-                                onClick={() => deletePost(props.post._id)}
+                                onClick={handleDeletePost}
                             >
                                 <DeleteIcon />
                             </Button>
