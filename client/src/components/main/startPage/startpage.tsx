@@ -1,3 +1,4 @@
+import Footer from "../../footer";
 import Header from "../../header";
 import Gallery from "./gallary";
 import OurRides from "./ourRides";
@@ -10,6 +11,7 @@ function StartPage() {
             <SlideShow />
             <OurRides />
             <Gallery />
+            <Footer />
         </main>
     );
 }
