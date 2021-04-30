@@ -14,19 +14,17 @@ function AllPosts(props: Props){
     const { posts, createNewPost } = useContext(PostContext);
     const [isOpen, setIsOpen] = useState(false);
     const [newComment, setNewComment] = useState('');
-    const [commentExist, setCommentExist] = useState(false)
+    const [newURL, setNewURL] = useState('');
+    const [commentExist, setCommentExist] = useState(false);
     const thisCarouselPosts = posts.filter((post) => post.carouselTag === props.carouselName);
-
 
     const rating = 2;
 
     function handleAddComment() {
-        createNewPost( rating, newComment, props.carouselName);
+        createNewPost( rating, newURL, newComment, props.carouselName);
         setIsOpen(false);
         setCommentExist(true);
     };
-
-
 
     return (
         <Box>
@@ -50,6 +48,12 @@ function AllPosts(props: Props){
                     <Rating
                         name='Rating-input'
                         value={rating}
+                    />
+                    <TextField 
+                        type='url'
+                        label='URL'
+                        value={newURL}
+                        onChange={(event) => setNewURL(event.target.value)}
                     />
                     <TextField
                         type='text'
