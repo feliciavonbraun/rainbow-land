@@ -3,20 +3,19 @@
 We have created a wesite for our tivoli where you can create your account, log in and add your personal review about each and every of our carousels. If you change your mind you can always edit and delete your posts. Enjoy! 
 
 ## Creators
-[Jennifer](https://github.com/JenniferTendell),
-[Mikaela](https://github.com/MikaelaAnd),
+[Jennifer](https://github.com/JenniferTendell)<br>
+[Mikaela](https://github.com/MikaelaAnd)<br>
 [Felicia](https://github.com/feliciavonbraun)
 
 
 ### Start our project: 
 
-In the project directory, you run: `npm i` in both server and client. Then you run: `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-
-
+#### Step 1: cd server, run `npm i`and thereafter `npm start` (localhost:4000)<br>
+#### Step 2: cd client, run `npm i`and thereafter `npm start`(localhost 3000)<br>
+#### Step 3: Run `npm i` in root folder <rainbow-land> and thereafter. 
+ 
+ - If you want, you can skip `npm start`in both server and client and after installation in both those files, run `npm start`
+  in root folder and everything will start!
 
 
 ### `npm run build`

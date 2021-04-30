@@ -48,10 +48,9 @@ const rootStyle: CSSProperties = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 'calc(100vh - 5rem)', // ta minus det som headerns hight här
+    height: '100vh',
     width: '100%',
     backgroundImage: 'url(https://images.pexels.com/photos/1860634/pexels-photo-1860634.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)',
-    // backgroundImage: 'url(../../../assets/loginBg.jpeg)',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
@@ -65,7 +64,7 @@ const transparentLayer: CSSProperties = {
     bottom: '0',
     left: '0',
     width: '100%',
-    height: 'calc(100vh - 5rem)',
+    height: '100vh',
 };
 
 const whiteContainer: CSSProperties = {

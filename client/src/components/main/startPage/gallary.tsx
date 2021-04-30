@@ -20,7 +20,6 @@ function Gallery() {
                     <ImageCarousel />
                 </Box>
             </Box>
-
         </Box >
     )
 };
@@ -28,5 +27,4 @@ function Gallery() {
 const title: CSSProperties = {
     marginLeft: '10%',
 };
-
 export default Gallery;

@@ -1,8 +1,6 @@
 import { Box } from "@material-ui/core";
 import footerTransition from "../assets/footerTransition.svg";
-import logo from "../assets/logo.svg"
-
-
+import logo from "../assets/logo.svg";
 
 function Footer() {
     return (

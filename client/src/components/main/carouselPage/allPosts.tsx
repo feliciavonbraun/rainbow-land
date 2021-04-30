@@ -43,6 +43,7 @@ function AllPosts(props: Props){
                     display='flex'
                     flexDirection='column' 
                     padding='1rem'
+                    marginTop='2rem'
                     style={{ boxShadow: '5px 5px 10px #BDBDBD' }}
                 >
                     <Rating

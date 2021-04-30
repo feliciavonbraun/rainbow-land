@@ -12,31 +12,33 @@ function CarouselInfo(props: Props) {
     const rating = 2;
 
     return (
-        <Box position='relative' margin='2rem 0'>
+        <Box position='relative'>
             <Typography variant='h2' style={h2}>
                 {props.carouselName}
             </Typography>
-            <Typography >
-                Rating
-            </Typography>
-            <Rating
-                name='Carousel rating'
-                value={rating}
-                readOnly
-            />
-            <Typography>
-                Tickets
-            </Typography>
-            <Rating
-                name='Tickets'
-                value={3}
-                icon={<ConfirmationNumberIcon htmlColor='#F8ABC7' />}
-                readOnly
-                emptyIcon={<ConfirmationNumberIcon htmlColor='#BDBDBD' />}
-            />
+            <Box paddingTop='5rem'>
+                <Typography >
+                    Rating
+                </Typography>
+                <Rating
+                    name='Carousel rating'
+                    value={rating}
+                    readOnly
+                />
+                <Typography>
+                    Tickets
+                </Typography>
+                <Rating
+                    name='Tickets'
+                    value={3}
+                    icon={<ConfirmationNumberIcon htmlColor='#F8ABC7' />}
+                    readOnly
+                    emptyIcon={<ConfirmationNumberIcon htmlColor='#BDBDBD' />}
+                />
+            </Box>
         </Box>
     );
-}; 
+};
 
 const h2: CSSProperties = {
     position: 'absolute',
