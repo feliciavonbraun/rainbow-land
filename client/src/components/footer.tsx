@@ -19,15 +19,15 @@ function Footer() {
                 justifyContent='center'
                 height='7rem'
                 bgcolor='var(--clrWhite)'
+                marginTop='-0.3rem'
             >
                 <img 
                     style={{width:'70%'}}
-                    src={logo} 
+                    src={logo}
                     alt="Rainbow Land"
                 />
             </Box>
         </footer>
-    );
-}
-
+    )
+};
 export default Footer; 

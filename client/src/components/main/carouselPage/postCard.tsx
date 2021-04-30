@@ -11,12 +11,12 @@ interface Props {
     removeComment: () => void,
     existingRating: number,
     updateRating: (rating:number) => void
-}
-
+};
+    
 function PostCard(props: Props) {
     const { username } = useContext(LoginContext);
     const { deletePost, updatePost } = useContext(PostContext);
-
+  
     const [ newComment, setNewComment] = useState(props.post.comment)
     const [newRating, setNewRating] = useState(props.existingRating);
     const [ updatedURL, setUpdatedURL] = useState(props.post.image);
