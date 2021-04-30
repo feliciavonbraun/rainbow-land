@@ -8,6 +8,6 @@ function Layout() {
             <Main />
             <Footer />
         </div>
-    )
+    );
 }
 export default Layout;

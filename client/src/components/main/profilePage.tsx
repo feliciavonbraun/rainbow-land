@@ -30,7 +30,7 @@ function ProfilePage() {
                 Delete account
             </Button>
         </main>
-    )
+    );
 }
 
 const rootStyle: CSSProperties = {
@@ -40,7 +40,6 @@ const rootStyle: CSSProperties = {
     alignItems: 'center',
     flexDirection: 'column',
     position: 'relative'
-
 }
 
 const goBackBtn: CSSProperties = {
