@@ -45,7 +45,6 @@ postRouter.put('/:id', async (req, res) => {
                     $set: {
                         rating: req.body.rating,
                         comment: req.body.comment,
-                        carouselTag: req.body.carouselTag
                     },
                 },
             );
