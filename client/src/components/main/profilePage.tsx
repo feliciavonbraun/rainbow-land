@@ -22,13 +22,6 @@ function ProfilePage() {
             >
                 Logout
             </Button>
-            <Button
-                style={{ marginTop: '1rem' }}
-                type='submit'
-                color='secondary'
-            >
-                Delete account
-            </Button>
         </main>
     );
 }
