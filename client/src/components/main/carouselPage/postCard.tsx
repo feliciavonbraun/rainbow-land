@@ -8,23 +8,24 @@ import { LoginContext } from "../../../contexts/loginContext";
 interface Props {
     post: Post,
     removeCommentExist: () => void,
-    removeComment: () => void
+    removeComment: () => void,
+    existingRating: number,
+    updateRating: (rating:number) => void
 }
 
 function PostCard(props: Props) {
     const { username } = useContext(LoginContext);
     const { deletePost, updatePost } = useContext(PostContext);
-    const [editFields, setEditFields] = useState(false);
-    const [ updatedComment, setUpdatedComment ] = useState(props.post.comment);
+
+    const [ newComment, setNewComment] = useState(props.post.comment)
+    const [newRating, setNewRating] = useState(props.existingRating);
     const [ updatedURL, setUpdatedURL] = useState(props.post.image);
-
-    // Rating ska baseras på användarnas betyg
-    const rating = 2;
+    const [editFields, setEditFields] = useState(false);
     
-
-    function handleClick() {
+    function handleUpdatePost() {
+        updatePost(props.post._id, newRating, updatedURL, newComment);
         setEditFields(!editFields);
-        updatePost(props.post._id, rating, updatedURL, updatedComment);
+        props.updateRating(newRating)
     };
 
     function handleDeletePost() {
@@ -52,13 +53,20 @@ function PostCard(props: Props) {
                 >
 
                     {editFields ?
-                        <Box>
+                        <Box
+                            display='flex'
+                            flexDirection='column'
+                        >
                             <Typography variant='subtitle1'>
                                 {props.post.username}
                             </Typography>
                             <Rating 
                                 name='Rating-input' 
-                                value={rating} 
+                                value={newRating}
+                                onChange={(event, ratingValue) => {
+                                    if (ratingValue)
+                                    setNewRating(ratingValue)
+                                }} 
                             />
                             <TextField
                                 type='text'
@@ -70,8 +78,8 @@ function PostCard(props: Props) {
                             <TextField
                                 type='text'
                                 multiline
-                                value={updatedComment}
-                                onChange={(event) => setUpdatedComment(event.target.value)}
+                                value={newComment}
+                                onChange={(event) => setNewComment(event.target.value)}
                             >
                                 {props.post.comment}
                             </TextField>
@@ -83,12 +91,12 @@ function PostCard(props: Props) {
                             </Typography>
                             <Rating
                                 name='Rating'
-                                value={rating}
+                                value={props.existingRating}
                                 size='small'
                                 readOnly
                             />
                             <Typography>
-                                {updatedComment}
+                                {newComment}
                             </Typography>
                         </Box>
                     }
@@ -101,7 +109,7 @@ function PostCard(props: Props) {
                             <Button
                                 variant='contained'
                                 style={{ margin: '1rem 0' }}
-                                onClick={() => handleClick() }
+                                onClick={() => handleUpdatePost() }
                             >
                                 {editFields === false ?
                                     'Edit'

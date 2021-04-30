@@ -12,19 +12,25 @@ interface Props {
 function AllPosts(props: Props){   
     const { username } = useContext(LoginContext);
     const { posts, createNewPost } = useContext(PostContext);
+    
     const [isOpen, setIsOpen] = useState(false);
     const [newComment, setNewComment] = useState('');
+    const [commentExist, setCommentExist] = useState(false)
+    const [rating, setRating] = useState(2)
     const [newURL, setNewURL] = useState('');
-    const [commentExist, setCommentExist] = useState(false);
+   
     const thisCarouselPosts = posts.filter((post) => post.carouselTag === props.carouselName);
 
-    const rating = 2;
-
-    function handleAddComment() {
+    function handleAddPost() {
         createNewPost( rating, newURL, newComment, props.carouselName);
         setIsOpen(false);
         setCommentExist(true);
     };
+
+    function handleUpdateRating(updatedRating: number) {
+        setRating(updatedRating);
+    };
+
 
     return (
         <Box>
@@ -47,8 +53,12 @@ function AllPosts(props: Props){
                     style={{ boxShadow: '5px 5px 10px #BDBDBD' }}
                 >
                     <Rating
-                        name='Rating-input'
+                        name={username}
                         value={rating}
+                        onChange={(event, newRating) => {
+                            if (newRating)
+                            setRating(newRating)
+                        }}
                     />
                     <TextField 
                         type='url'
@@ -75,7 +85,7 @@ function AllPosts(props: Props){
                         <Button
                             variant='contained'
                             color='primary'
-                            onClick={ () => handleAddComment() }
+                            onClick={ () => handleAddPost() }
                         >
                             Add
                         </Button>
@@ -93,6 +103,8 @@ function AllPosts(props: Props){
                             post={post}
                             removeCommentExist={() => setCommentExist(false)}
                             removeComment={() => setNewComment('')}
+                            existingRating={rating}
+                            updateRating={handleUpdateRating}
                         />
                     )}
             </Grid>
