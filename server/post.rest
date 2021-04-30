@@ -14,6 +14,7 @@ Content-Type: application/json
 
 {
     "rating": 3,
+    "image": "https://raw.githubusercontent.com/feliciavonbraun/rainbow-land/main/client/src/assets/carouselPics/carousel1.jpeg",
     "comment": "Superduper!",
     "carouselTag": "Roller coaster"
 }
@@ -21,12 +22,13 @@ Content-Type: application/json
 ###
 
 // Update post
-PUT http://localhost:4000/api/post/6087c0fe926a8e395a1c1412
+PUT http://localhost:4000/api/post/608bdf30a210c3d327c91edb
 Content-Type: application/json
 
 {
     "rating": 3,
-    "comment": "höhöhöhö!"
+    "image": "https://raw.githubusercontent.com/feliciavonbraun/rainbow-land/main/client/src/assets/carouselPics/carousel1.jpeg",
+    "comment": "YAY!"
 }
 
 ###
