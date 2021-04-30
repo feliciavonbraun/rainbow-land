@@ -13,7 +13,6 @@ function OurRides() {
             <Typography variant='h2' style={h2}>
                 Our Rides
             </Typography>
-
             <Grid
                 container
                 spacing={2}

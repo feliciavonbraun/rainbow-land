@@ -7,7 +7,7 @@ function SlideShow() {
         <div style={rootStyle}>
             <img style={carouselStyle}src={MainCarousel} alt="" />
         </div>
-    )
+    );
 }
 
 const rootStyle: CSSProperties = {
