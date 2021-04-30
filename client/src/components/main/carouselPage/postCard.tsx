@@ -2,7 +2,7 @@ import { Box, Button, Grid, Typography, TextField } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useContext, useState } from "react";
-//import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties } from '@material-ui/styles';
 import { Post, PostContext } from "../../../contexts/postsContext";
 import { LoginContext } from "../../../contexts/loginContext";
 interface Props {
@@ -16,13 +16,14 @@ interface Props {
 function PostCard(props: Props) {
     const { username } = useContext(LoginContext);
     const { deletePost, updatePost } = useContext(PostContext);
+
     const [ newComment, setNewComment] = useState(props.post.comment)
     const [newRating, setNewRating] = useState(props.existingRating);
-    
+    const [ updatedURL, setUpdatedURL] = useState(props.post.image);
     const [editFields, setEditFields] = useState(false);
-
+    
     function handleUpdatePost() {
-        updatePost(props.post._id, newRating, newComment);
+        updatePost(props.post._id, newRating, updatedURL, newComment);
         setEditFields(!editFields);
         props.updateRating(newRating)
     };
@@ -41,11 +42,11 @@ function PostCard(props: Props) {
             md={4}
         >
             <Box style={{ boxShadow: '5px 5px 10px #BDBDBD' }}>
-                {/* <img
+                <img
                     src={props.post.image}
-                    alt={props.post.title}
+                    alt={'props.post.title'}
                     style={imageStyle}
-                /> */}
+                />
                 <Box
                     margin='0 1rem'
                     paddingBottom='1rem'
@@ -69,8 +70,16 @@ function PostCard(props: Props) {
                             />
                             <TextField
                                 type='text'
+                                value={updatedURL}
+                                onChange={(event) => setUpdatedURL(event.target.value)}
+                            >
+                                {props.post.image}
+                            </TextField>
+                            <TextField
+                                type='text'
+                                multiline
                                 value={newComment}
-                                onChange={ (event) => setNewComment(event.target.value) }
+                                onChange={(event) => setNewComment(event.target.value)}
                             >
                                 {props.post.comment}
                             </TextField>
@@ -119,11 +128,11 @@ function PostCard(props: Props) {
             </Box>
         </Grid>
     );
-}
+};
 
-// const imageStyle: CSSProperties = {
-//     width: '100%',
-//     objectFit: 'cover',
-// };
+const imageStyle: CSSProperties = {
+    width: '100%',
+    objectFit: 'cover',
+};
 
 export default PostCard;

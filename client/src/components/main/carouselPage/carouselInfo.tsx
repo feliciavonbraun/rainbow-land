@@ -10,7 +10,7 @@ interface Props {
 
 function CarouselInfo(props: Props) {
     return (
-        <Box position='relative' margin='2rem 0'>
+        <Box position='relative'>
             <Typography variant='h2' style={h2}>
                 {props.carousel.name}
             </Typography>
@@ -26,7 +26,7 @@ function CarouselInfo(props: Props) {
             />
         </Box>
     );
-}; 
+};
 
 const h2: CSSProperties = {
     position: 'absolute',

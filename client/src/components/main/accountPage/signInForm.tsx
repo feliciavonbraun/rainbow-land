@@ -19,7 +19,6 @@ function SignInForm() {
         }
     }
  
-
     return (
         <FormControl style={form}>
             <TextField 
@@ -29,7 +28,6 @@ function SignInForm() {
                 required
                 onChange={(event) => {setInputUsername(event.target.value)}} 
                 error={errorMessage}
-                helperText='Incorrect inputUsername'
             />
             <TextField
                 type='password' 
@@ -38,7 +36,6 @@ function SignInForm() {
                 required
                 onChange={(event) => {setPassword(event.target.value)}} 
                 error={errorMessage}
-                helperText='Incorrect password'
             />
             <Button
                 style={{ marginTop: '1rem' }}

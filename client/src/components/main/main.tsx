@@ -20,6 +20,6 @@ function Main() {
                 <ProfilePage />
             </Route>
         </Switch>
-    )
+    );
 }
 export default Main;

@@ -31,7 +31,7 @@ function CarouselCard(props: Props) {
                 </Typography>
             </Link>
         </Grid>
-    )
+    );
 };
 
 const noTextDecoration: CSSProperties = {

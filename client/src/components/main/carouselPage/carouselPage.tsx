@@ -16,16 +16,12 @@ function CarouselPage(){
             <Box height='50vh'>
                 <img style={imageStyle} src={carousel?.image} alt={carousel?.name} />
             </Box>
-            <Box width='80%' margin='0 auto'>
-                <CarouselInfo 
-                    carousel={carousel!} 
-                />
-                <AllPosts 
-                    carouselName={carousel!.name}
-                />
+            <Box width='80%' margin='1rem auto 3rem auto'>
+                <CarouselInfo carouselName={carousel?.name} />
+                <AllPosts carouselName={carousel!.name}/>
             </Box>
         </main>
-    )
+    );
 }
 
 const imageStyle: CSSProperties = {

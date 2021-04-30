@@ -22,15 +22,8 @@ function ProfilePage() {
             >
                 Logout
             </Button>
-            <Button
-                style={{ marginTop: '1rem' }}
-                type='submit'
-                color='secondary'
-            >
-                Delete account
-            </Button>
         </main>
-    )
+    );
 }
 
 const rootStyle: CSSProperties = {
@@ -40,7 +33,6 @@ const rootStyle: CSSProperties = {
     alignItems: 'center',
     flexDirection: 'column',
     position: 'relative'
-
 }
 
 const goBackBtn: CSSProperties = {

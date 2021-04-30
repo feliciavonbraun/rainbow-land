@@ -5,6 +5,7 @@ export interface Post {
     _id: string,
     username: string;
     rating: number;
+    image: string; 
     comment: string;
     carouselTag: string;
 }
@@ -12,9 +13,9 @@ export interface Post {
 interface PostContextValue {
     posts: Post[];
     getAllPosts: () => void;
-    createNewPost: (rating: number, comment: string, carouselTag: string) => void;
+    createNewPost: (rating: number, image: string, comment: string, carouselTag: string) => void;
     deletePost: (_id: string) => void;
-    updatePost: (_id: string, rating: number, comment: string) => void;
+    updatePost: (_id: string, rating: number, image: string, comment: string) => void;
 }
 
 interface Props {
@@ -40,9 +41,10 @@ function PostProvider(props: Props) {
         setPosts(allPosts);
     };
 
-    async function createNewPost(rating: number, comment: string, carouselTag: string) {
+    async function createNewPost(rating: number, image: string, comment: string, carouselTag: string) {
         const body = {
             rating,
+            image, 
             comment,
             carouselTag
         };
@@ -51,9 +53,10 @@ function PostProvider(props: Props) {
         await getAllPosts()
     };
 
-    async function updatePost(postId: string, rating: number, comment: string) {
+    async function updatePost(postId: string, rating: number, image: string, comment: string) {
         const body = {
             rating,
+            image, 
             comment
         };
 

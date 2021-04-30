@@ -17,11 +17,12 @@ function AllPosts(props: Props){
     const [newComment, setNewComment] = useState('');
     const [commentExist, setCommentExist] = useState(false)
     const [rating, setRating] = useState(2)
-
+    const [newURL, setNewURL] = useState('');
+   
     const thisCarouselPosts = posts.filter((post) => post.carouselTag === props.carouselName);
 
     function handleAddPost() {
-        createNewPost( rating, newComment, props.carouselName);
+        createNewPost( rating, newURL, newComment, props.carouselName);
         setIsOpen(false);
         setCommentExist(true);
     };
@@ -29,6 +30,7 @@ function AllPosts(props: Props){
     function handleUpdateRating(updatedRating: number) {
         setRating(updatedRating);
     };
+
 
     return (
         <Box>
@@ -47,6 +49,7 @@ function AllPosts(props: Props){
                     display='flex'
                     flexDirection='column' 
                     padding='1rem'
+                    marginTop='2rem'
                     style={{ boxShadow: '5px 5px 10px #BDBDBD' }}
                 >
                     <Rating
@@ -56,6 +59,12 @@ function AllPosts(props: Props){
                             if (newRating)
                             setRating(newRating)
                         }}
+                    />
+                    <TextField 
+                        type='url'
+                        label='URL'
+                        value={newURL}
+                        onChange={(event) => setNewURL(event.target.value)}
                     />
                     <TextField
                         type='text'
