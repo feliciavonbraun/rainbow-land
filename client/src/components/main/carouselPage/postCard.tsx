@@ -11,13 +11,18 @@ interface Props {
 
 function PostCard(props: Props) {
     const { username } = useContext(LoginContext);
-    const { deletePost } = useContext(PostContext);
-
+    const { deletePost, updatePost } = useContext(PostContext);
+    const [ updatedComment, setUpdatedComment] = useState(props.post.description)
 
     // Rating ska baseras på användarnas betyg
     const rating = 2;
-
+    
     const [editFields, setEditFields] = useState(false);
+
+    function handleClick() {
+        setEditFields(!editFields)
+        updatePost(props.post._id, rating, updatedComment)
+    };
 
     return (
         <Grid
@@ -42,10 +47,14 @@ function PostCard(props: Props) {
                             <Typography variant='subtitle1'>
                                 {props.post.username}
                             </Typography>
-                            <Rating name='Rating-input' value={rating} />
+                            <Rating 
+                                name='Rating-input' 
+                                value={rating} 
+                            />
                             <TextField
                                 type='text'
-                                // onChange={updatePost(event?.target.value)}
+                                value={updatedComment}
+                                onChange={ (event) => setUpdatedComment(event.target.value) }
                             >
                                 {props.post.description}
                             </TextField>
@@ -62,7 +71,7 @@ function PostCard(props: Props) {
                                 readOnly
                             />
                             <Typography>
-                                {props.post.description}
+                                {updatedComment}
                             </Typography>
                         </Box>
                     }
@@ -75,12 +84,12 @@ function PostCard(props: Props) {
                             <Button
                                 variant='contained'
                                 style={{ margin: '1rem 0' }}
-                                onClick={() => setEditFields(!editFields) }
+                                onClick={() => handleClick() }
                             >
                                 {editFields === false ?
                                     'Edit'
                                     :
-                                    'Add'
+                                    'Update'
                                 }
                             </Button>
                             <Button
