@@ -6,7 +6,7 @@ import { PostContext } from "../../../contexts/postsContext";
 import PostCard from "./postCard";
 
 interface Props {
-    carouselName: string
+    carouselName: string,
 };
 
 function AllPosts(props: Props){   
@@ -14,22 +14,23 @@ function AllPosts(props: Props){
     const { posts, createNewPost } = useContext(PostContext);
     const [isOpen, setIsOpen] = useState(false);
     const [newComment, setNewComment] = useState('');
+    const [commentExist, setCommentExist] = useState(false)
     const thisCarouselPosts = posts.filter((post) => post.carouselTag === props.carouselName);
 
 
     const rating = 2;
 
-    function handleClick() {
-        console.log('hej')
-        setIsOpen(false)
-        createNewPost( rating, newComment, props.carouselName)
+    function handleAddComment() {
+        createNewPost( rating, newComment, props.carouselName);
+        setIsOpen(false);
+        setCommentExist(true);
     };
 
 
 
     return (
         <Box>
-            {username && !isOpen &&
+            {username && !isOpen && !commentExist &&
                 <Button
                     variant='contained'
                     color='secondary'
@@ -44,8 +45,6 @@ function AllPosts(props: Props){
                     display='flex'
                     flexDirection='column' 
                     padding='1rem'
-                    // height='10rem'
-                    // marginBottom='2rem'
                     style={{ boxShadow: '5px 5px 10px #BDBDBD' }}
                 >
                     <Rating
@@ -71,14 +70,13 @@ function AllPosts(props: Props){
                         <Button
                             variant='contained'
                             color='primary'
-                            onClick={ () => handleClick() }
+                            onClick={ () => handleAddComment() }
                         >
                             Add
                         </Button>
                     </Box>
                 </Box>
             )}
-
             <Box marginTop='3rem'>
             <Grid
                 container
@@ -88,6 +86,8 @@ function AllPosts(props: Props){
                         <PostCard 
                             key={i}
                             post={post}
+                            removeCommentExist={() => setCommentExist(false)}
+                            removeComment={() => setNewComment('')}
                         />
                     )}
             </Grid>
