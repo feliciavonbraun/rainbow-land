@@ -1,29 +1,32 @@
-import { Box } from "@material-ui/core";
-//import { CSSProperties } from "@material-ui/styles";
+import { Box, Typography, } from "@material-ui/core";
+import { CSSProperties } from "@material-ui/styles";
 import galleryTransition from "../../../assets/galleryTransition.svg"
+import ImageCarousel from "./imageCarousel";
 
 function Gallery() {
+
     return (
         <Box position='relative'>
             <Box marginBottom='-0.3rem'>
                 <img src={galleryTransition} alt="" />
             </Box>
-            {/* <Typography variant='h2' style={title}>
-                Gallery
-            </Typography> */}
             <Box
-                // height='20rem'
                 bgcolor='var(--clrBlue)'
             >
-
+                <Typography variant='h2' style={title}>
+                    Gallery
+                </Typography>
+                <Box marginTop='3rem'>
+                    <ImageCarousel />
+                </Box>
             </Box>
-        </Box>
-    );
+
+        </Box >
+    )
 };
 
-// const title: CSSProperties = {
-//     position: 'absolute',
-//     marginLeft: '10%',
-// };
+const title: CSSProperties = {
+    marginLeft: '10%',
+};
 
 export default Gallery;

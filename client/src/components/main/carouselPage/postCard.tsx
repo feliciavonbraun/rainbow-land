@@ -9,7 +9,7 @@ interface Props {
     post: Post,
     removeCommentExist: () => void,
     removeComment: () => void
-}
+};
 
 function PostCard(props: Props) {
     const { username } = useContext(LoginContext);
@@ -20,7 +20,6 @@ function PostCard(props: Props) {
 
     // Rating ska baseras på användarnas betyg
     const rating = 2;
-    
 
     function handleClick() {
         setEditFields(!editFields);
