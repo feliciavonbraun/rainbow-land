@@ -14,7 +14,8 @@ Content-Type: application/json
 
 {
     "rating": 3,
-    "description": "Superduper!"
+    "comment": "Superduper!",
+    "carouselTag": "Roller coaster"
 }
 
 ###
@@ -25,7 +26,7 @@ Content-Type: application/json
 
 {
     "rating": 3,
-    "description": "höhöhöhö!"
+    "comment": "höhöhöhö!"
 }
 
 ###

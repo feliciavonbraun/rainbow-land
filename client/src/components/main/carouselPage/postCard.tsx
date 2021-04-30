@@ -56,7 +56,7 @@ function PostCard(props: Props) {
                                 value={updatedComment}
                                 onChange={ (event) => setUpdatedComment(event.target.value) }
                             >
-                                {props.post.description}
+                                {props.post.comment}
                             </TextField>
                         </Box>
                         :

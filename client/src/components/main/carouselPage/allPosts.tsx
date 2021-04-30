@@ -5,11 +5,17 @@ import { LoginContext } from "../../../contexts/loginContext";
 import { PostContext } from "../../../contexts/postsContext";
 import PostCard from "./postCard";
 
-function AllPosts() {
+interface Props {
+    carouselName: string | undefined
+};
+
+function AllPosts(props: Props){   
     const { username } = useContext(LoginContext);
     const { posts, createNewPost } = useContext(PostContext);
     const [isOpen, setIsOpen] = useState(false);
     const [newComment, setNewComment] = useState('');
+    const thisCarouselPosts = posts.filter((post) => post.carouselTag === props.carouselName);
+
 
     const rating = 2;
 
@@ -18,6 +24,8 @@ function AllPosts() {
         setIsOpen(false)
         createNewPost( rating, newComment)
     };
+
+
 
     return (
         <Box>
@@ -75,17 +83,16 @@ function AllPosts() {
             <Grid
                 container
                 spacing={5}
-            >
-                {posts.map((post, i) =>
-                    <PostCard
-                        key={i}
-                        post={post}
-                    />
-                )}
+             >
+                {thisCarouselPosts.map((post, i) =>
+                        <PostCard 
+                            key={i}
+                            post={post}
+                        />
+                    )}
             </Grid>
             </Box>
         </Box>
     )
-}
-
+};
 export default AllPosts;
