@@ -8,14 +8,14 @@ We have created a wesite for our tivoli where you can create your account, log i
 [Felicia](https://github.com/feliciavonbraun)
 
 ### Example post-images: 
-Flying Carousel:
-https://github.com/feliciavonbraun/rainbow-land/blob/main/client/src/assets/carouselPics/flyingCarousel2.jpeg?raw=true 
-Roller Coaster: 
-https://github.com/feliciavonbraun/rainbow-land/blob/main/client/src/assets/carouselPics/rollerCoaster2.jpeg
-Ferris Wheel: 
-https://raw.githubusercontent.com/feliciavonbraun/rainbow-land/main/client/src/assets/carouselPics/ferrisWheel2.jpeg
-Carousel: 
-https://raw.githubusercontent.com/feliciavonbraun/rainbow-land/main/client/src/assets/carouselPics/carousel2.jpeg
+#### Flying Carousel:
+https://github.com/feliciavonbraun/rainbow-land/blob/main/client/src/assets/carouselPics/flyingCarousel2.jpeg?raw=true <br>
+#### Roller Coaster:
+https://github.com/feliciavonbraun/rainbow-land/blob/main/client/src/assets/carouselPics/rollerCoaster2.jpeg <br>
+#### Ferris Wheel: 
+https://raw.githubusercontent.com/feliciavonbraun/rainbow-land/main/client/src/assets/carouselPics/ferrisWheel2.jpeg <br>
+#### Carousel:
+https://raw.githubusercontent.com/feliciavonbraun/rainbow-land/main/client/src/assets/carouselPics/carousel2.jpeg <br>
 
 ### Start our project: 
 
