@@ -1,6 +1,6 @@
 # Rainbow Land 
 
-We have created a wesite for our tivoli where you can create your account, log in and add your personal review about each and every of our carousels. If you change your mind you can always edit and delete your posts. Enjoy! 
+We have created a website for our tivoli where you can create your account, log in and add your personal review about each and every of our carousels. If you change your mind you can always edit and delete your posts. Enjoy! 
 
 ## Creators
 [Jennifer](https://github.com/JenniferTendell)<br>
